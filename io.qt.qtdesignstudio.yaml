@@ -9,13 +9,13 @@ rename-icon: QtProject-qtdesignstudio
 finish-args:
   - --share=ipc
   - --share=network
-  - --socket=wayland
   - --socket=fallback-x11
   - --filesystem=host
   - --device=dri
   - --allow=devel
   - --env=QTWEBENGINEPROCESS_PATH=/app/bin/QtWebEngineProcess
   - --env=QML_IMPORT_PATH=/app/qml
+  - --env=QT_QPA_PLATFORM=xcb 
 modules:
   - name: qt6-qtquicktimeline
     buildsystem: cmake-ninja
