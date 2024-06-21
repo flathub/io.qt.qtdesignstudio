@@ -32,6 +32,50 @@ modules:
             - <:6.8.0
           url-template: https://download.qt.io/official_releases/qt/6.7/$version/submodules/qtquicktimeline-everywhere-src-$version.tar.xz
           stable-only: true
+  - name: qt6-qtquick3d
+    buildsystem: cmake-ninja
+    config-opts:
+      - -DCMAKE_BUILD_TYPE=Release
+    sources:
+      - type: archive
+        url: https://download.qt.io/official_releases/qt/6.7/6.7.2/submodules/qtquick3d-everywhere-src-6.7.2.tar.xz
+        md5: 424be46d3fd2b1b1aa1e776ace0570ca
+        x-checker-data:
+          type: anitya
+          project-id: 7927
+          version:
+            - <:6.8.0
+          url-template: https://download.qt.io/official_releases/qt/6.7/$version/submodules/qtquick3d-everywhere-src-$version.tar.xz
+          stable-only: true
+  - name: qt6-qtquick3dphysics
+    buildsystem: cmake-ninja
+    config-opts:
+      - -DCMAKE_BUILD_TYPE=Release
+    sources:
+      - type: archive
+        url: https://download.qt.io/official_releases/qt/6.7/6.7.2/submodules/qtquick3dphysics-everywhere-src-6.7.2.tar.xz
+        md5: ca0bbbbdbe1432b8462969437e9edc22
+        x-checker-data:
+          type: anitya
+          project-id: 7927
+          version:
+            - <:6.8.0
+          url-template: https://download.qt.io/official_releases/qt/6.7/$version/submodules/qtquick3dphysics-everywhere-src-$version.tar.xz
+          stable-only: true
+  - name: qt6-qtquickeffectmaker
+    buildsystem: cmake-ninja
+    config-opts:
+      - -DCMAKE_BUILD_TYPE=Release
+    sources:
+      - type: archive
+        url: https://download.qt.io/official_releases/qt/6.7/6.7.2/submodules/qtquickeffectmaker-everywhere-src-6.7.2.tar.xz
+        md5: 32a1335af6483f59ed284fdefc3e135c
+        x-checker-data:
+          type: anitya
+          project-id: 7927
+          version:
+            - <:6.8.0
+          url-template: https://download.qt.io/official_releases/qt/6.7/$version/submodules/qtquickeffectmaker-everywhere-src-$version.tar.xz
           stable-only: true
   - name: qt-creator
     buildsystem: cmake-ninja
@@ -67,3 +111,8 @@ modules:
         url: https://code.qt.io/qt-labs/qtquickdesigner-components
         tag: qds-dev-4.5
         commit: 39f8401bdb821aa6609fbb6baadd503f57aa82d1
+
+  - name: symlink
+    buildsystem: simple
+    build-commands:
+      - "ln -srf ${FLATPAK_DEST}/lib/${FLATPAK_ARCH}-linux-gnu/libQt*.so* -t ${FLATPAK_DEST}/lib/"
