@@ -1,0 +1,36 @@
+From fcf2d20644902d1a03c1fe36483ef4c141527841 Mon Sep 17 00:00:00 2001
+From: Ahmad Samir <a.samirh78@gmail.com>
+Date: Mon, 15 Apr 2024 13:05:59 +0200
+Subject: [PATCH] FSEngineImpl: fix the build with Qt 6.7
+
+I, rather naively, cherry-picked the FileTime commit in
+QAbstractFileEngine in qtbase, fd295f4bf6002b499f1f238efa5a7c8d9c90be39,
+to the Qt 6.7 branch (commit 22d1a437cb4431a3e7ca1bf8e3b6ba4290d0a0cf),
+so it will be in effect starting from Qt 6.7.1, which breaks the build
+if you're using 6.7 HEAD. Thanks to David Faure for pointing this out in
+the code review.
+
+Change-Id: Ia94a75814321c5832099174f9a9c1b47a8cee23d
+Reviewed-by: Marcus Tillmanns <marcus.tillmanns@qt.io>
+Reviewed-by: hjk <hjk@qt.io>
+---
+ src/libs/utils/fsengine/fsengine_impl.h | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
+
+diff --git a/src/libs/utils/fsengine/fsengine_impl.h b/src/libs/utils/fsengine/fsengine_impl.h
+index 00a33f227ce..7a68119c83a 100644
+--- a/src/libs/utils/fsengine/fsengine_impl.h
++++ b/src/libs/utils/fsengine/fsengine_impl.h
+@@ -53,7 +53,8 @@ public:
+     uint ownerId(FileOwner) const override;
+     QString owner(FileOwner) const override;
+ 
+-#if QT_VERSION >= QT_VERSION_CHECK(6, 8, 0)
++    // The FileTime change in QAbstractFileEngine, in qtbase, is in since Qt 6.7.1
++#if QT_VERSION >= QT_VERSION_CHECK(6, 7, 1)
+     using FileTime = QFile::FileTime;
+ #endif
+     bool setFileTime(const QDateTime &newDate, FileTime time) override;
+-- 
+2.45.2
+
