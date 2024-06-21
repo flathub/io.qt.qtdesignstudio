@@ -116,3 +116,12 @@ modules:
     buildsystem: simple
     build-commands:
       - "ln -srf ${FLATPAK_DEST}/lib/${FLATPAK_ARCH}-linux-gnu/libQt*.so* -t ${FLATPAK_DEST}/lib/"
+  - name: docs
+    buildsystem: simple
+    sources:
+      - type: archive
+        url: https://download.qt.io/online/qtsdkrepository/windows_x86/desktop/tools_qtdesignstudio_generation2/qt.tools.qtdesignstudio/4.5.0-0-202405220636docs.7z
+        sha256: 8ca7f119e6fea8727c60a6c9c77b82f011c26d6565a4222f1aa009f8cc324036
+        strip-components: 2
+    build-commands:
+      - "cp -r share/doc $FLATPAK_DEST/share"
