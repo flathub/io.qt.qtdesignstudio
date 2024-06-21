@@ -44,8 +44,8 @@ modules:
     sources:
       - type: git
         url: https://code.qt.io/qt-creator/qt-creator
-        tag: qds/v4.5
-        commit: 17e69ab9686df38ec02715c08e54b120865ca2e7
+        tag: v13.0.2
+        commit: 1ad2c04e0ea5aae60ae7236229f4588846c40229
         x-checker-data:
           type: anitya
           project-id: 4136
