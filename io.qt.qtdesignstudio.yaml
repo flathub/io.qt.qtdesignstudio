@@ -15,7 +15,7 @@ finish-args:
   - --allow=devel
   - --env=QTWEBENGINEPROCESS_PATH=/app/bin/QtWebEngineProcess
   - --env=QML_IMPORT_PATH=/app/qml
-  - --env=QT_QPA_PLATFORM=xcb 
+  - --env=QT_QPA_PLATFORM=xcb
 modules:
   - name: qt6-qtquicktimeline
     buildsystem: cmake-ninja
@@ -89,8 +89,8 @@ modules:
     sources:
       - type: git
         url: https://code.qt.io/qt-creator/qt-creator
-        tag: qds/v4.5
-        commit: 17e69ab9686df38ec02715c08e54b120865ca2e7
+        tag: v13.0.2
+        commit: 1ad2c04e0ea5aae60ae7236229f4588846c40229
         x-checker-data:
           type: anitya
           project-id: 4136
@@ -99,7 +99,7 @@ modules:
       - type: patch
         path: 0001-Add-Design-Studio-for-Linux.patch
       - type: patch
-        path:  0001-FSEngineImpl-fix-the-build-with-Qt-6.7.patch
+        path: 0001-FSEngineImpl-fix-the-build-with-Qt-6.7.patch
       - type: patch
         path: 0001-LanguageClient-fix-compile-with-latest-Qt-dev.patch
   - name: qtquickdesigner-components
@@ -115,7 +115,7 @@ modules:
   - name: symlink
     buildsystem: simple
     build-commands:
-      - "ln -srf ${FLATPAK_DEST}/lib/${FLATPAK_ARCH}-linux-gnu/libQt*.so* -t ${FLATPAK_DEST}/lib/"
+      - ln -srf ${FLATPAK_DEST}/lib/${FLATPAK_ARCH}-linux-gnu/libQt*.so* -t ${FLATPAK_DEST}/lib/
   - name: docs
     buildsystem: simple
     sources:
@@ -124,4 +124,4 @@ modules:
         sha256: 8ca7f119e6fea8727c60a6c9c77b82f011c26d6565a4222f1aa009f8cc324036
         strip-components: 2
     build-commands:
-      - "cp -r share/doc $FLATPAK_DEST/share"
+      - cp -r share/doc $FLATPAK_DEST/share
