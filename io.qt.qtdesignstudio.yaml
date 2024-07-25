@@ -92,10 +92,8 @@ modules:
         tag: qds/v4.5.1
         commit: cfc606d91eb1a7ec7f9be8643b6fca4865bd59cf
         x-checker-data:
-          type: anitya
-          project-id: 4136
-          tag-template: qds/v$version
-          stable-only: true
+          type: git
+          tag-pattern: ^qds\/v(\d+\.\d+\.?\d*)$
       - type: patch
         path: 0001-Add-Design-Studio-for-Linux.patch
   - name: qtquickdesigner-components
