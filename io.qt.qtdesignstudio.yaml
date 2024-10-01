@@ -1,8 +1,8 @@
 app-id: io.qt.qtdesignstudio
 runtime: org.kde.Sdk
-runtime-version: '6.6'
+runtime-version: '6.7'
 base: io.qt.qtwebengine.BaseApp
-base-version: '6.6'
+base-version: '6.7'
 sdk: org.kde.Sdk
 command: qtdesignstudio
 rename-icon: QtProject-qtdesignstudio
@@ -23,14 +23,14 @@ modules:
       - -DCMAKE_BUILD_TYPE=Release
     sources:
       - type: archive
-        url: https://download.qt.io/official_releases/qt/6.6/6.6.3/submodules/qtquicktimeline-everywhere-src-6.6.3.tar.xz
-        md5: 75ab9c3de346ecb542c8156f6496799f
+        url: https://download.qt.io/official_releases/qt/6.7/6.7.3/submodules/qtquicktimeline-everywhere-src-6.7.3.tar.xz
+        md5: 206b1f06cdb0a03707e962b3fd7fbef0
         x-checker-data:
           type: anitya
           project-id: 7927
           version:
-            - <:6.7.0
-          url-template: https://download.qt.io/official_releases/qt/6.6/$version/submodules/qtquicktimeline-everywhere-src-$version.tar.xz
+            - <:6.8.0
+          url-template: https://download.qt.io/official_releases/qt/6.7/$version/submodules/qtquicktimeline-everywhere-src-$version.tar.xz
           stable-only: true
   - name: qt6-qtquick3d
     buildsystem: cmake-ninja
@@ -38,14 +38,14 @@ modules:
       - -DCMAKE_BUILD_TYPE=Release
     sources:
       - type: archive
-        url: https://download.qt.io/official_releases/qt/6.6/6.6.3/submodules/qtquick3d-everywhere-src-6.6.3.tar.xz
-        md5: ba069ba0174830bdaca0e2c9f4c1bdd3
+        url: https://download.qt.io/official_releases/qt/6.7/6.7.3/submodules/qtquick3d-everywhere-src-6.7.3.tar.xz
+        md5: db26b3deb3dd34049179286758ac9ad0
         x-checker-data:
           type: anitya
           project-id: 7927
           version:
-            - <:6.7.0
-          url-template: https://download.qt.io/official_releases/qt/6.6/$version/submodules/qtquick3d-everywhere-src-$version.tar.xz
+            - <:6.8.0
+          url-template: https://download.qt.io/official_releases/qt/6.7/$version/submodules/qtquick3d-everywhere-src-$version.tar.xz
           stable-only: true
   - name: qt6-qtquick3dphysics
     buildsystem: cmake-ninja
@@ -53,14 +53,14 @@ modules:
       - -DCMAKE_BUILD_TYPE=Release
     sources:
       - type: archive
-        url: https://download.qt.io/official_releases/qt/6.6/6.6.3/submodules/qtquick3dphysics-everywhere-src-6.6.3.tar.xz
-        md5: 27661b5ad6decfc00b2e3b4d9adc95dc
+        url: https://download.qt.io/official_releases/qt/6.7/6.7.3/submodules/qtquick3dphysics-everywhere-src-6.7.3.tar.xz
+        md5: 96f398db6c71eedb1056cbea930cbe43
         x-checker-data:
           type: anitya
           project-id: 7927
           version:
-            - <:6.7.0
-          url-template: https://download.qt.io/official_releases/qt/6.6/$version/submodules/qtquick3dphysics-everywhere-src-$version.tar.xz
+            - <:6.8.0
+          url-template: https://download.qt.io/official_releases/qt/6.7/$version/submodules/qtquick3dphysics-everywhere-src-$version.tar.xz
           stable-only: true
   - name: qt6-qtquickeffectmaker
     buildsystem: cmake-ninja
@@ -68,14 +68,14 @@ modules:
       - -DCMAKE_BUILD_TYPE=Release
     sources:
       - type: archive
-        url: https://download.qt.io/official_releases/qt/6.6/6.6.3/submodules/qtquickeffectmaker-everywhere-src-6.6.3.tar.xz
-        md5: 8c2541d033e1e5ecd2197f3667a052cb
+        url: https://download.qt.io/official_releases/qt/6.7/6.7.3/submodules/qtquickeffectmaker-everywhere-src-6.7.3.tar.xz
+        md5: ece3ed67995d95e5f9e5e3b3482f962a
         x-checker-data:
           type: anitya
           project-id: 7927
           version:
-            - <:6.7.0
-          url-template: https://download.qt.io/official_releases/qt/6.6/$version/submodules/qtquicktimeline-everywhere-src-$version.tar.xz
+            - <:6.8.0
+          url-template: https://download.qt.io/official_releases/qt/6.7/$version/submodules/qtquickeffectmaker-everywhere-src-$version.tar.xz
           stable-only: true
   - name: qt-creator
     buildsystem: cmake-ninja
@@ -89,13 +89,11 @@ modules:
     sources:
       - type: git
         url: https://code.qt.io/qt-creator/qt-creator
-        tag: qds/v4.5.1
-        commit: cfc606d91eb1a7ec7f9be8643b6fca4865bd59cf
+        tag: qds/v4.6.0
+        commit: 88ecbbd42569e38c565e508148298ed98b633d5e
         x-checker-data:
           type: git
           tag-pattern: ^qds\/v(\d+\.\d+\.?\d*)$
-      - type: patch
-        path: 0001-Add-Design-Studio-for-Linux.patch
   - name: qtquickdesigner-components
     buildsystem: cmake-ninja
     config-opts:
@@ -103,8 +101,8 @@ modules:
     sources:
       - type: git
         url: https://code.qt.io/qt-labs/qtquickdesigner-components
-        tag: qds-dev-4.5
-        commit: 39f8401bdb821aa6609fbb6baadd503f57aa82d1
+        tag: qds-dev-4.6
+        commit: 2930e08181ea0d9d7361249ad2c903d5ecacead0
 
   - name: symlink
     buildsystem: simple
@@ -114,8 +112,8 @@ modules:
     buildsystem: simple
     sources:
       - type: archive
-        url: https://download.qt.io/online/qtsdkrepository/windows_x86/desktop/tools_qtdesignstudio_generation2/qt.tools.qtdesignstudio/4.5.0-0-202405220636docs.7z
-        sha256: 8ca7f119e6fea8727c60a6c9c77b82f011c26d6565a4222f1aa009f8cc324036
+        url: https://download.qt.io/online/qtsdkrepository/windows_x86/desktop/tools_qtdesignstudio_generation2/qt.tools.qtdesignstudio/4.6.0-0-202409251531docs.7z
+        sha256: 813afeef50b2289418781a03f876b6dcdd4a6df3c3df392729178b60f4151a76
         strip-components: 2
     build-commands:
       - "cp -r share/doc $FLATPAK_DEST/share"
