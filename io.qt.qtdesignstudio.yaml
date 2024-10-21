@@ -15,7 +15,7 @@ finish-args:
   - --allow=devel
   - --env=QTWEBENGINEPROCESS_PATH=/app/bin/QtWebEngineProcess
   - --env=QML_IMPORT_PATH=/app/qml
-  - --env=QT_QPA_PLATFORM=xcb 
+  - --env=QT_QPA_PLATFORM=xcb
 modules:
   - name: qt6-qtquicktimeline
     buildsystem: cmake-ninja
@@ -89,8 +89,8 @@ modules:
     sources:
       - type: git
         url: https://code.qt.io/qt-creator/qt-creator
-        tag: qds/v4.6.0
-        commit: 88ecbbd42569e38c565e508148298ed98b633d5e
+        tag: qds/v4.6.1
+        commit: cb2bde343a3fb602db6c5ff42cc12f7ceefead5f
         x-checker-data:
           type: git
           tag-pattern: ^qds\/v(\d+\.\d+\.?\d*)$
@@ -107,7 +107,7 @@ modules:
   - name: symlink
     buildsystem: simple
     build-commands:
-      - "ln -srf ${FLATPAK_DEST}/lib/${FLATPAK_ARCH}-linux-gnu/libQt*.so* -t ${FLATPAK_DEST}/lib/"
+      - ln -srf ${FLATPAK_DEST}/lib/${FLATPAK_ARCH}-linux-gnu/libQt*.so* -t ${FLATPAK_DEST}/lib/
   - name: docs
     buildsystem: simple
     sources:
@@ -116,4 +116,4 @@ modules:
         sha256: 813afeef50b2289418781a03f876b6dcdd4a6df3c3df392729178b60f4151a76
         strip-components: 2
     build-commands:
-      - "cp -r share/doc $FLATPAK_DEST/share"
+      - cp -r share/doc $FLATPAK_DEST/share
