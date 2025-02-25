@@ -55,13 +55,13 @@ modules:
     buildsystem: simple
     sources:
       - type: archive
-        url: https://download.qt.io/online/qtsdkrepository/windows_x86/desktop/tools_qtdesignstudio_generation2/qt.tools.qtdesignstudio/4.6.2-0-202411010923docs.7z
-        sha1: fa96cfc5e12dc831bd83afd86ae1ea71ab6e34f8
+        url: https://download.qt.io/online/qtsdkrepository/linux_x64/desktop/tools_qtdesignstudio_generation2/qt.tools.qtdesignstudio/4.6.2-0-202411010923docs.7z
+        sha1: 2312af9e56fd67fc08fe837ace4d6896928afbe2
         strip-components: 2
         x-checker-data:
           type: html
-          url: https://download.qt.io/online/qtsdkrepository/windows_x86/desktop/tools_qtdesignstudio_generation2/Updates.xml
+          url: https://download.qt.io/online/qtsdkrepository/linux_x64/desktop/tools_qtdesignstudio_generation2/Updates.xml
           version-pattern: <Version>(.+)</Version>
-          url-template: https://download.qt.io/online/qtsdkrepository/windows_x86/desktop/tools_qtdesignstudio_generation2/qt.tools.qtdesignstudio/$versiondocs.7z
+          url-template: https://download.qt.io/online/qtsdkrepository/linux_x64/desktop/tools_qtdesignstudio_generation2/qt.tools.qtdesignstudio/$versiondocs.7z
     build-commands:
       - cp -r share/doc $FLATPAK_DEST/share
