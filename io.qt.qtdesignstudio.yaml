@@ -44,7 +44,9 @@ modules:
         url: https://code.qt.io/qt-labs/qtquickdesigner-components
         tag: qds-dev-4.7
         commit: 5eb7b9257de974ef0b3a4b128c0adf5ed24517f1
-
+        x-checker-data:
+          type: git
+          tag-pattern: ^qds-dev-(\d+\.\d+\.?\d*)$
   - name: symlink
     buildsystem: simple
     build-commands:
@@ -53,8 +55,13 @@ modules:
     buildsystem: simple
     sources:
       - type: archive
-        url: https://download.qt.io/online/qtsdkrepository/windows_x86/desktop/tools_qtdesignstudio_generation2_preview/preview.qt.tools.qtdesignstudio/4.7.0-0-202502051743docs.7z
-        sha1: e07fa08560f3bb2c6e3733e894f1fd9de0386ae1
+        url: https://download.qt.io/online/qtsdkrepository/windows_x86/desktop/tools_qtdesignstudio_generation2/qt.tools.qtdesignstudio/4.6.2-0-202411010923docs.7z
+        sha1: da4c862e2d416aa1825f8f8201b3f52a84f809ce
         strip-components: 2
+        x-checker-data:
+          type: html
+          url: https://download.qt.io/online/qtsdkrepository/windows_x86/desktop/tools_qtdesignstudio_generation2/Updates.xml
+          version-pattern: <Version>(.+)</Version>
+          url-template: https://download.qt.io/online/qtsdkrepository/windows_x86/desktop/tools_qtdesignstudio_generation2/qt.tools.qtdesignstudio/$versiondocs.7z
     build-commands:
       - cp -r share/doc $FLATPAK_DEST/share
