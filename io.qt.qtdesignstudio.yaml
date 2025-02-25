@@ -43,7 +43,7 @@ modules:
       - type: git
         url: https://code.qt.io/qt-labs/qtquickdesigner-components
         tag: qds-dev-4.7
-        commit: 5eb7b9257de974ef0b3a4b128c0adf5ed24517f1q
+        commit: 5eb7b9257de974ef0b3a4b128c0adf5ed24517f1
 
   - name: symlink
     buildsystem: simple
