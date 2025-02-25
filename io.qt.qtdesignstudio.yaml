@@ -90,8 +90,8 @@ modules:
     sources:
       - type: git
         url: https://code.qt.io/qt-creator/qt-creator
-        tag: qds/v4.6.2
-        commit: 1bd736f9a24de6f6d82b86dcd163dc11d0197b9e
+        tag: qds/v4.7.0
+        commit: bfb74e5d04a08caf7051116e46193293975f0b33
         x-checker-data:
           type: git
           tag-pattern: ^qds\/v(\d+\.\d+\.?\d*)$
