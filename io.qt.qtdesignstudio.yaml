@@ -53,8 +53,8 @@ modules:
     buildsystem: simple
     sources:
       - type: archive
-        url: https://download.qt.io/online/qtsdkrepository/windows_x86/desktop/tools_qtdesignstudio_generation2/qt.tools.qtdesignstudio/4.6.1-0-202410021209docs.7z
-        sha1: 399da1c4c20e729182d7b91a42b4126f26be0c68
+        url: https://download.qt.io/online/qtsdkrepository/windows_x86/desktop/tools_qtdesignstudio_generation2_preview/preview.qt.tools.qtdesignstudio/4.7.0-0-202502051743docs.7z
+        sha1: e07fa08560f3bb2c6e3733e894f1fd9de0386ae1
         strip-components: 2
     build-commands:
       - cp -r share/doc $FLATPAK_DEST/share
