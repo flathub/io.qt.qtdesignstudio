@@ -56,7 +56,7 @@ modules:
     sources:
       - type: archive
         url: https://download.qt.io/online/qtsdkrepository/windows_x86/desktop/tools_qtdesignstudio_generation2/qt.tools.qtdesignstudio/4.6.2-0-202411010923docs.7z
-        sha1: da4c862e2d416aa1825f8f8201b3f52a84f809ce
+        sha1: fa96cfc5e12dc831bd83afd86ae1ea71ab6e34f8
         strip-components: 2
         x-checker-data:
           type: html
