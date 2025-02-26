@@ -47,10 +47,6 @@ modules:
         x-checker-data:
           type: git
           tag-pattern: ^qds-dev-(\d+\.\d+\.?\d*)$
-  - name: symlink
-    buildsystem: simple
-    build-commands:
-      - ln -srf ${FLATPAK_DEST}/lib/${FLATPAK_ARCH}-linux-gnu/libQt*.so* -t ${FLATPAK_DEST}/lib/
   - name: docs
     buildsystem: simple
     sources:
