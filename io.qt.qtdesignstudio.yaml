@@ -15,7 +15,7 @@ finish-args:
   - --device=dri
   - --allow=devel
   - --env=QTWEBENGINEPROCESS_PATH=/app/bin/QtWebEngineProcess
-  - --env=QML_IMPORT_PATH=/app/qml
+  - --env=QML_IMPORT_PATH=/app/lib/qml
   - --env=QT_QPA_PLATFORM=xcb
 modules:
   - name: qt-creator
