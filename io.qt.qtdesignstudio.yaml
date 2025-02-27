@@ -47,6 +47,8 @@ modules:
         x-checker-data:
           type: git
           tag-pattern: ^qds\/v(\d+\.\d+\.?\d*)$
+      - type: patch
+        path: 0001-QmlDesigner-Add-module-statement-to-qmldir.patch
   - name: docs
     buildsystem: simple
     sources:
