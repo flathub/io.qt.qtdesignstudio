@@ -30,6 +30,15 @@ modules:
         x-checker-data:
           type: git
           tag-pattern: ^qds-dev-(\d+\.\d+\.?\d*)$
+  - name: linker-setup
+    buildsystem: simple
+    build-commands:
+      - install -Dm644 ld.so.conf /app/etc/ld.so.conf
+    sources:
+      - type: inline
+        dest-filename: ld.so.conf
+        contents: |
+          /app/lib/x86_64-linux-gnu
   - name: qt-creator
     buildsystem: cmake-ninja
     config-opts:
