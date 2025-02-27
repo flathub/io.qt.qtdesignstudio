@@ -1,0 +1,1070 @@
+From 8ca8b6b61b9d90bacb599b9493ae3014c07c79a8 Mon Sep 17 00:00:00 2001
+From: Marco Bubke <marco.bubke@qt.io>
+Date: Thu, 27 Feb 2025 12:56:21 +0100
+Subject: [PATCH] Workaround broken style in flatpak
+
+Change-Id: I87d0d7408f7ce7b32b5f2cff66401a83c36c9200
+---
+ .../qmldesigner/assetsLibraryQmlSources/AssetDelegate.qml   | 2 +-
+ .../qmldesigner/connectionseditor/BindingsListView.qml      | 2 +-
+ .../qmldesigner/connectionseditor/ConnectionsListView.qml   | 2 +-
+ .../qmldesigner/connectionseditor/ExpressionBuilder.qml     | 2 +-
+ .../qmldesigner/connectionseditor/MyListViewDelegate.qml    | 2 +-
+ .../qmldesigner/connectionseditor/MyTreeViewDelegate.qml    | 2 +-
+ .../qmldesigner/connectionseditor/PropertiesListView.qml    | 2 +-
+ .../qmldesigner/connectionseditor/SuggestionPopup.qml       | 2 +-
+ .../qmldesigner/connectionseditor/TabCheckButton.qml        | 2 +-
+ .../designsystem/imports/DesignSystemControls/MenuItem.qml  | 2 +-
+ .../designsystem/imports/DesignSystemControls/Switch.qml    | 2 +-
+ .../designsystem/imports/DesignSystemControls/TextField.qml | 2 +-
+ share/qtcreator/qmldesigner/devicemanager/Main.qml          | 4 ++--
+ .../imports/DeviceManagerControls/ButtonInput.qml           | 4 ++--
+ .../imports/DeviceManagerControls/Dropdown.qml              | 2 +-
+ .../devicemanager/imports/DeviceManagerControls/Switch.qml  | 2 +-
+ .../imports/DeviceManagerControls/ToolbarButton.qml         | 2 +-
+ .../qmldesigner/effectComposerQmlSources/CodeEditorTabs.qml | 2 +-
+ .../qmldesigner/effectComposerQmlSources/ColumnChooser.qml  | 2 +-
+ .../materialBrowserQmlSource/MaterialBrowser.qml            | 2 +-
+ .../imports/StudioControls/AbstractButton.qml               | 2 +-
+ .../imports/StudioControls/ActionIndicator.qml              | 2 +-
+ .../imports/StudioControls/ButtonRow.qml                    | 2 +-
+ .../imports/StudioControls/CheckBox.qml                     | 2 +-
+ .../imports/StudioControls/CheckIndicator.qml               | 2 +-
+ .../imports/StudioControls/ColorEditor.qml                  | 2 +-
+ .../imports/StudioControls/ComboBox.qml                     | 2 +-
+ .../imports/StudioControls/ComboBoxInput.qml                | 2 +-
+ .../imports/StudioControls/Dialog.qml                       | 2 +-
+ .../imports/StudioControls/DialogButton.qml                 | 2 +-
+ .../imports/StudioControls/DialogButtonBox.qml              | 2 +-
+ .../imports/StudioControls/FilterComboBox.qml               | 2 +-
+ .../imports/StudioControls/IconTextButton.qml               | 2 +-
+ .../imports/StudioControls/Indicator.qml                    | 2 +-
+ .../imports/StudioControls/InfinityLoopIndicator.qml        | 2 +-
+ .../imports/StudioControls/LinkIndicator2D.qml              | 2 +-
+ .../imports/StudioControls/LinkIndicator3D.qml              | 2 +-
+ .../imports/StudioControls/LinkIndicator3DComponent.qml     | 2 +-
+ .../imports/StudioControls/Menu.qml                         | 2 +-
+ .../imports/StudioControls/MenuItem.qml                     | 2 +-
+ .../imports/StudioControls/MenuItemWithIcon.qml             | 2 +-
+ .../imports/StudioControls/MenuSeparator.qml                | 2 +-
+ .../imports/StudioControls/PopupDialog.qml                  | 2 +-
+ .../imports/StudioControls/ProgressBar.qml                  | 2 +-
+ .../imports/StudioControls/RadioButton.qml                  | 2 +-
+ .../imports/StudioControls/RealSliderPopup.qml              | 2 +-
+ .../imports/StudioControls/RealSpinBox.qml                  | 2 +-
+ .../imports/StudioControls/RealSpinBoxIndicator.qml         | 2 +-
+ .../imports/StudioControls/RealSpinBoxInput.qml             | 2 +-
+ .../imports/StudioControls/ScrollBar.qml                    | 2 +-
+ .../imports/StudioControls/ScrollView.qml                   | 2 +-
+ .../imports/StudioControls/SearchBox.qml                    | 2 +-
+ .../imports/StudioControls/Section.qml                      | 2 +-
+ .../imports/StudioControls/SectionLayout.qml                | 2 +-
+ .../imports/StudioControls/Slider.qml                       | 2 +-
+ .../imports/StudioControls/SliderPopup.qml                  | 2 +-
+ .../imports/StudioControls/SpinBox.qml                      | 2 +-
+ .../imports/StudioControls/SpinBoxIndicator.qml             | 2 +-
+ .../imports/StudioControls/SpinBoxInput.qml                 | 2 +-
+ .../imports/StudioControls/SplitView.qml                    | 2 +-
+ .../imports/StudioControls/Switch.qml                       | 2 +-
+ .../imports/StudioControls/TabBar.qml                       | 2 +-
+ .../imports/StudioControls/TabButton.qml                    | 2 +-
+ .../imports/StudioControls/TextArea.qml                     | 2 +-
+ .../imports/StudioControls/TextField.qml                    | 2 +-
+ .../imports/StudioControls/ToolTip.qml                      | 2 +-
+ .../imports/StudioControls/TopLevelComboBox.qml             | 2 +-
+ .../imports/StudioControls/TransientScrollBar.qml           | 2 +-
+ .../imports/StudioControls/TranslationIndicator.qml         | 2 +-
+ .../qtcreator/qmldesigner/statusbar/NotificationButton.qml  | 2 +-
+ share/qtcreator/qmldesigner/statusbar/TabBarButton.qml      | 2 +-
+ share/qtcreator/qmldesigner/toolbar/MenuItemDelegate.qml    | 2 +-
+ share/qtcreator/qmldesigner/toolbar/SplitButton.qml         | 6 +++---
+ 73 files changed, 77 insertions(+), 77 deletions(-)
+
+diff --git a/share/qtcreator/qmldesigner/assetsLibraryQmlSources/AssetDelegate.qml b/share/qtcreator/qmldesigner/assetsLibraryQmlSources/AssetDelegate.qml
+index 59d01e0f18f..75da9f912d9 100644
+--- a/share/qtcreator/qmldesigner/assetsLibraryQmlSources/AssetDelegate.qml
++++ b/share/qtcreator/qmldesigner/assetsLibraryQmlSources/AssetDelegate.qml
+@@ -10,7 +10,7 @@ import AssetsLibraryBackend
+ T.TreeViewDelegate {
+     id: root
+ 
+-    property StudioTheme.ControlStyle style: StudioTheme.Values.controlStyle
++    property var style: StudioTheme.Values.controlStyle
+ 
+     required property Item assetsView
+     required property Item assetsRoot
+diff --git a/share/qtcreator/qmldesigner/connectionseditor/BindingsListView.qml b/share/qtcreator/qmldesigner/connectionseditor/BindingsListView.qml
+index b50e1fbb5c5..b2063119826 100644
+--- a/share/qtcreator/qmldesigner/connectionseditor/BindingsListView.qml
++++ b/share/qtcreator/qmldesigner/connectionseditor/BindingsListView.qml
+@@ -11,7 +11,7 @@ import ConnectionsEditorEditorBackend
+ ListView {
+     id: root
+ 
+-    property StudioTheme.ControlStyle style: StudioTheme.Values.viewBarButtonStyle
++    property var style: StudioTheme.Values.viewBarButtonStyle
+ 
+     property bool adsFocus: false
+ 
+diff --git a/share/qtcreator/qmldesigner/connectionseditor/ConnectionsListView.qml b/share/qtcreator/qmldesigner/connectionseditor/ConnectionsListView.qml
+index 53a51a89e97..ba99846867d 100644
+--- a/share/qtcreator/qmldesigner/connectionseditor/ConnectionsListView.qml
++++ b/share/qtcreator/qmldesigner/connectionseditor/ConnectionsListView.qml
+@@ -11,7 +11,7 @@ import ConnectionsEditorEditorBackend
+ ListView {
+     id: root
+ 
+-    property StudioTheme.ControlStyle style: StudioTheme.Values.viewBarButtonStyle
++    property var style: StudioTheme.Values.viewBarButtonStyle
+ 
+     property bool adsFocus: false
+ 
+diff --git a/share/qtcreator/qmldesigner/connectionseditor/ExpressionBuilder.qml b/share/qtcreator/qmldesigner/connectionseditor/ExpressionBuilder.qml
+index 54d8ee937f3..6ff7d524f32 100644
+--- a/share/qtcreator/qmldesigner/connectionseditor/ExpressionBuilder.qml
++++ b/share/qtcreator/qmldesigner/connectionseditor/ExpressionBuilder.qml
+@@ -8,7 +8,7 @@ import StudioTheme as StudioTheme
+ Rectangle {
+     id: root
+ 
+-    property StudioTheme.ControlStyle style: StudioTheme.Values.controlStyle
++    property var style: StudioTheme.Values.controlStyle
+ 
+     property var conditionListModel: ConnectionsEditorEditorBackend.connectionModel.delegate.conditionListModel
+ 
+diff --git a/share/qtcreator/qmldesigner/connectionseditor/MyListViewDelegate.qml b/share/qtcreator/qmldesigner/connectionseditor/MyListViewDelegate.qml
+index 5ca53985d85..53a679fd7f6 100644
+--- a/share/qtcreator/qmldesigner/connectionseditor/MyListViewDelegate.qml
++++ b/share/qtcreator/qmldesigner/connectionseditor/MyListViewDelegate.qml
+@@ -9,7 +9,7 @@ import StudioTheme as StudioTheme
+ ItemDelegate {
+     id: control
+ 
+-    property StudioTheme.ControlStyle style: StudioTheme.Values.controlStyle
++    property var style: StudioTheme.Values.controlStyle
+ 
+     hoverEnabled: true
+     verticalPadding: 0
+diff --git a/share/qtcreator/qmldesigner/connectionseditor/MyTreeViewDelegate.qml b/share/qtcreator/qmldesigner/connectionseditor/MyTreeViewDelegate.qml
+index 549cb0fd7b5..68ffa34f148 100644
+--- a/share/qtcreator/qmldesigner/connectionseditor/MyTreeViewDelegate.qml
++++ b/share/qtcreator/qmldesigner/connectionseditor/MyTreeViewDelegate.qml
+@@ -9,7 +9,7 @@ import StudioTheme as StudioTheme
+ T.TreeViewDelegate {
+     id: control
+ 
+-    property StudioTheme.ControlStyle style: StudioTheme.Values.controlStyle
++    property var style: StudioTheme.Values.controlStyle
+ 
+     hoverEnabled: true
+     implicitWidth: 200
+diff --git a/share/qtcreator/qmldesigner/connectionseditor/PropertiesListView.qml b/share/qtcreator/qmldesigner/connectionseditor/PropertiesListView.qml
+index 0606febb0dd..5649f3af7ca 100644
+--- a/share/qtcreator/qmldesigner/connectionseditor/PropertiesListView.qml
++++ b/share/qtcreator/qmldesigner/connectionseditor/PropertiesListView.qml
+@@ -11,7 +11,7 @@ import ConnectionsEditorEditorBackend
+ ListView {
+     id: root
+ 
+-    property StudioTheme.ControlStyle style: StudioTheme.Values.viewBarButtonStyle
++    property var style: StudioTheme.Values.viewBarButtonStyle
+ 
+     property bool adsFocus: false
+ 
+diff --git a/share/qtcreator/qmldesigner/connectionseditor/SuggestionPopup.qml b/share/qtcreator/qmldesigner/connectionseditor/SuggestionPopup.qml
+index fad01c32c4d..8d858ce493b 100644
+--- a/share/qtcreator/qmldesigner/connectionseditor/SuggestionPopup.qml
++++ b/share/qtcreator/qmldesigner/connectionseditor/SuggestionPopup.qml
+@@ -11,7 +11,7 @@ import ConnectionsEditorEditorBackend
+ Controls.Popup {
+     id: root
+ 
+-    property StudioTheme.ControlStyle style: StudioTheme.Values.controlStyle
++    property var style: StudioTheme.Values.controlStyle
+ 
+     property var listModel: ConnectionsEditorEditorBackend.connectionModel.delegate.propertyListProxyModel
+     property var treeModel: ConnectionsEditorEditorBackend.connectionModel.delegate.propertyTreeModel
+diff --git a/share/qtcreator/qmldesigner/connectionseditor/TabCheckButton.qml b/share/qtcreator/qmldesigner/connectionseditor/TabCheckButton.qml
+index a16e18962cb..24c399f8093 100644
+--- a/share/qtcreator/qmldesigner/connectionseditor/TabCheckButton.qml
++++ b/share/qtcreator/qmldesigner/connectionseditor/TabCheckButton.qml
+@@ -10,7 +10,7 @@ import StudioTheme as StudioTheme
+ T.TabButton {
+     id: control
+ 
+-    property StudioTheme.ControlStyle style: StudioTheme.Values.viewBarButtonStyle
++    property var style: StudioTheme.Values.viewBarButtonStyle
+ 
+     property alias tooltip: toolTipArea.tooltip
+     property alias buttonIcon: buttonIcon.text
+diff --git a/share/qtcreator/qmldesigner/designsystem/imports/DesignSystemControls/MenuItem.qml b/share/qtcreator/qmldesigner/designsystem/imports/DesignSystemControls/MenuItem.qml
+index 54e8d22fee9..e8f1e5bb449 100644
+--- a/share/qtcreator/qmldesigner/designsystem/imports/DesignSystemControls/MenuItem.qml
++++ b/share/qtcreator/qmldesigner/designsystem/imports/DesignSystemControls/MenuItem.qml
+@@ -9,7 +9,7 @@ import StudioTheme as StudioTheme
+ T.MenuItem {
+     id: control
+ 
+-    property StudioTheme.ControlStyle style: StudioTheme.Values.controlStyle
++    property var style: StudioTheme.Values.controlStyle
+ 
+     property int labelSpacing: control.style.contextMenuLabelSpacing
+ 
+diff --git a/share/qtcreator/qmldesigner/designsystem/imports/DesignSystemControls/Switch.qml b/share/qtcreator/qmldesigner/designsystem/imports/DesignSystemControls/Switch.qml
+index 4ccdca4486c..0917aba4594 100644
+--- a/share/qtcreator/qmldesigner/designsystem/imports/DesignSystemControls/Switch.qml
++++ b/share/qtcreator/qmldesigner/designsystem/imports/DesignSystemControls/Switch.qml
+@@ -9,7 +9,7 @@ import StudioTheme 1.0 as StudioTheme
+ T.Switch {
+     id: control
+ 
+-    property StudioTheme.ControlStyle style: StudioTheme.Values.controlStyle
++    property var style: StudioTheme.Values.controlStyle
+ 
+     // This property is used to indicate the global hover state
+     property bool hover: control.hovered && control.enabled
+diff --git a/share/qtcreator/qmldesigner/designsystem/imports/DesignSystemControls/TextField.qml b/share/qtcreator/qmldesigner/designsystem/imports/DesignSystemControls/TextField.qml
+index 35ec8b04c47..c87b484bad7 100644
+--- a/share/qtcreator/qmldesigner/designsystem/imports/DesignSystemControls/TextField.qml
++++ b/share/qtcreator/qmldesigner/designsystem/imports/DesignSystemControls/TextField.qml
+@@ -9,7 +9,7 @@ import StudioTheme as StudioTheme
+ T.TextField {
+     id: control
+ 
+-    property StudioTheme.ControlStyle style: StudioTheme.Values.controlStyle
++    property var style: StudioTheme.Values.controlStyle
+ 
+     // This property is used to indicate the global hover state
+     property bool hover: mouseArea.containsMouse && control.enabled
+diff --git a/share/qtcreator/qmldesigner/devicemanager/Main.qml b/share/qtcreator/qmldesigner/devicemanager/Main.qml
+index 97885fcc433..0aeb2b8eef9 100644
+--- a/share/qtcreator/qmldesigner/devicemanager/Main.qml
++++ b/share/qtcreator/qmldesigner/devicemanager/Main.qml
+@@ -174,7 +174,7 @@ Rectangle {
+                 TableView.editDelegate: T.TextField {
+                     id: aliasTextField
+ 
+-                    property StudioTheme.ControlStyle style: StudioTheme.Values.controlStyle
++                    property var style: StudioTheme.Values.controlStyle
+ 
+                     anchors.fill: parent
+                     text: aliasDelegate.display
+@@ -225,7 +225,7 @@ Rectangle {
+                 TableView.editDelegate: T.TextField {
+                     id: ipTextField
+ 
+-                    property StudioTheme.ControlStyle style: StudioTheme.Values.controlStyle
++                    property var style: StudioTheme.Values.controlStyle
+ 
+                     anchors.fill: parent
+                     text: ipDelegate.display
+diff --git a/share/qtcreator/qmldesigner/devicemanager/imports/DeviceManagerControls/ButtonInput.qml b/share/qtcreator/qmldesigner/devicemanager/imports/DeviceManagerControls/ButtonInput.qml
+index af6cddd6e15..2b8f62eb834 100644
+--- a/share/qtcreator/qmldesigner/devicemanager/imports/DeviceManagerControls/ButtonInput.qml
++++ b/share/qtcreator/qmldesigner/devicemanager/imports/DeviceManagerControls/ButtonInput.qml
+@@ -10,7 +10,7 @@ import StudioTheme as StudioTheme
+ T.TextField {
+     id: control
+ 
+-    property StudioTheme.ControlStyle style: StudioTheme.Values.controlStyle
++    property var style: StudioTheme.Values.controlStyle
+ 
+     signal buttonClicked
+ 
+@@ -92,7 +92,7 @@ T.TextField {
+     T.AbstractButton {
+         id: button
+ 
+-        property StudioTheme.ControlStyle style: StudioTheme.Values.viewBarButtonStyle
++        property var style: StudioTheme.Values.viewBarButtonStyle
+ 
+         width: button.style.squareControlSize.width
+         height: button.style.squareControlSize.height
+diff --git a/share/qtcreator/qmldesigner/devicemanager/imports/DeviceManagerControls/Dropdown.qml b/share/qtcreator/qmldesigner/devicemanager/imports/DeviceManagerControls/Dropdown.qml
+index 7b67d79db0d..b104bf6f41e 100644
+--- a/share/qtcreator/qmldesigner/devicemanager/imports/DeviceManagerControls/Dropdown.qml
++++ b/share/qtcreator/qmldesigner/devicemanager/imports/DeviceManagerControls/Dropdown.qml
+@@ -12,7 +12,7 @@ import StudioTheme as StudioTheme
+ T.AbstractButton {
+     id: control
+ 
+-    property StudioTheme.ControlStyle style: StudioTheme.Values.controlStyle
++    property var style: StudioTheme.Values.controlStyle
+ 
+     property alias model: listView.model
+ 
+diff --git a/share/qtcreator/qmldesigner/devicemanager/imports/DeviceManagerControls/Switch.qml b/share/qtcreator/qmldesigner/devicemanager/imports/DeviceManagerControls/Switch.qml
+index 9fe8f182657..8288495b16d 100644
+--- a/share/qtcreator/qmldesigner/devicemanager/imports/DeviceManagerControls/Switch.qml
++++ b/share/qtcreator/qmldesigner/devicemanager/imports/DeviceManagerControls/Switch.qml
+@@ -9,7 +9,7 @@ import StudioTheme as StudioTheme
+ T.Switch {
+     id: control
+ 
+-    property StudioTheme.ControlStyle style: StudioTheme.Values.controlStyle
++    property var style: StudioTheme.Values.controlStyle
+ 
+     // This property is used to indicate the global hover state
+     property bool hover: control.hovered && control.enabled
+diff --git a/share/qtcreator/qmldesigner/devicemanager/imports/DeviceManagerControls/ToolbarButton.qml b/share/qtcreator/qmldesigner/devicemanager/imports/DeviceManagerControls/ToolbarButton.qml
+index 7fe24492561..5ee3141cc32 100644
+--- a/share/qtcreator/qmldesigner/devicemanager/imports/DeviceManagerControls/ToolbarButton.qml
++++ b/share/qtcreator/qmldesigner/devicemanager/imports/DeviceManagerControls/ToolbarButton.qml
+@@ -10,7 +10,7 @@ import StudioTheme as StudioTheme
+ T.AbstractButton {
+     id: control
+ 
+-    property StudioTheme.ControlStyle style: StudioTheme.Values.viewBarButtonStyle
++    property var style: StudioTheme.Values.viewBarButtonStyle
+ 
+     property alias tooltip: toolTipArea.tooltip
+     property alias buttonIcon: buttonIcon.text
+diff --git a/share/qtcreator/qmldesigner/effectComposerQmlSources/CodeEditorTabs.qml b/share/qtcreator/qmldesigner/effectComposerQmlSources/CodeEditorTabs.qml
+index f7f43085aff..0f3f1c4416e 100644
+--- a/share/qtcreator/qmldesigner/effectComposerQmlSources/CodeEditorTabs.qml
++++ b/share/qtcreator/qmldesigner/effectComposerQmlSources/CodeEditorTabs.qml
+@@ -10,7 +10,7 @@ Rectangle {
+     id: root
+ 
+     property var rootEditor: shaderEditor
+-    property StudioTheme.ControlStyle style: StudioTheme.Values.controlStyle
++    property var style: StudioTheme.Values.controlStyle
+ 
+     color: StudioTheme.Values.themeToolbarBackground
+     height: rowLayout.height
+diff --git a/share/qtcreator/qmldesigner/effectComposerQmlSources/ColumnChooser.qml b/share/qtcreator/qmldesigner/effectComposerQmlSources/ColumnChooser.qml
+index cb1f3f4cf0e..33e83538e27 100644
+--- a/share/qtcreator/qmldesigner/effectComposerQmlSources/ColumnChooser.qml
++++ b/share/qtcreator/qmldesigner/effectComposerQmlSources/ColumnChooser.qml
+@@ -13,7 +13,7 @@ import TableModules as TableModules
+ T.AbstractButton {
+     id: control
+ 
+-    property StudioTheme.ControlStyle style: StudioTheme.Values.controlStyle
++    property var style: StudioTheme.Values.controlStyle
+ 
+     required property TableView table
+ 
+diff --git a/share/qtcreator/qmldesigner/materialBrowserQmlSource/MaterialBrowser.qml b/share/qtcreator/qmldesigner/materialBrowserQmlSource/MaterialBrowser.qml
+index 987934e295f..2d9b7023fc6 100644
+--- a/share/qtcreator/qmldesigner/materialBrowserQmlSource/MaterialBrowser.qml
++++ b/share/qtcreator/qmldesigner/materialBrowserQmlSource/MaterialBrowser.qml
+@@ -397,7 +397,7 @@ Item {
+         property alias icon: iconLabel.text
+         property alias tooltip: mouseArea.tooltip
+ 
+-        property StudioTheme.ControlStyle style: StudioTheme.Values.viewBarButtonStyle
++        property var style: StudioTheme.Values.viewBarButtonStyle
+ 
+         width: doubleButton.style.squareControlSize.width * 2
+         height: doubleButton.style.squareControlSize.height
+diff --git a/share/qtcreator/qmldesigner/propertyEditorQmlSources/imports/StudioControls/AbstractButton.qml b/share/qtcreator/qmldesigner/propertyEditorQmlSources/imports/StudioControls/AbstractButton.qml
+index 163374e73c9..90d36bc0542 100644
+--- a/share/qtcreator/qmldesigner/propertyEditorQmlSources/imports/StudioControls/AbstractButton.qml
++++ b/share/qtcreator/qmldesigner/propertyEditorQmlSources/imports/StudioControls/AbstractButton.qml
+@@ -8,7 +8,7 @@ import StudioTheme as StudioTheme
+ T.AbstractButton {
+     id: control
+ 
+-    property StudioTheme.ControlStyle style: StudioTheme.Values.controlStyle
++    property var style: StudioTheme.Values.controlStyle
+ 
+     property bool globalHover: false
+     property bool hover: control.hovered
+diff --git a/share/qtcreator/qmldesigner/propertyEditorQmlSources/imports/StudioControls/ActionIndicator.qml b/share/qtcreator/qmldesigner/propertyEditorQmlSources/imports/StudioControls/ActionIndicator.qml
+index 96a28d6d5c8..b07d683d376 100644
+--- a/share/qtcreator/qmldesigner/propertyEditorQmlSources/imports/StudioControls/ActionIndicator.qml
++++ b/share/qtcreator/qmldesigner/propertyEditorQmlSources/imports/StudioControls/ActionIndicator.qml
+@@ -8,7 +8,7 @@ import StudioTheme 1.0 as StudioTheme
+ Rectangle {
+     id: control
+ 
+-    property StudioTheme.ControlStyle style: StudioTheme.Values.controlStyle
++    property var style: StudioTheme.Values.controlStyle
+ 
+     property Item __parentControl
+ 
+diff --git a/share/qtcreator/qmldesigner/propertyEditorQmlSources/imports/StudioControls/ButtonRow.qml b/share/qtcreator/qmldesigner/propertyEditorQmlSources/imports/StudioControls/ButtonRow.qml
+index dffe70e9fa2..7ab51dd3e12 100644
+--- a/share/qtcreator/qmldesigner/propertyEditorQmlSources/imports/StudioControls/ButtonRow.qml
++++ b/share/qtcreator/qmldesigner/propertyEditorQmlSources/imports/StudioControls/ButtonRow.qml
+@@ -9,7 +9,7 @@ import StudioTheme 1.0 as StudioTheme
+ Row {
+     id: control
+ 
+-    property StudioTheme.ControlStyle style: StudioTheme.Values.controlStyle
++    property var style: StudioTheme.Values.controlStyle
+ 
+     property bool hover: (actionIndicator.hover || control.childHover) && control.enabled
+     property bool childHover: false
+diff --git a/share/qtcreator/qmldesigner/propertyEditorQmlSources/imports/StudioControls/CheckBox.qml b/share/qtcreator/qmldesigner/propertyEditorQmlSources/imports/StudioControls/CheckBox.qml
+index 7e565e3a47d..4ea9cdde50c 100644
+--- a/share/qtcreator/qmldesigner/propertyEditorQmlSources/imports/StudioControls/CheckBox.qml
++++ b/share/qtcreator/qmldesigner/propertyEditorQmlSources/imports/StudioControls/CheckBox.qml
+@@ -8,7 +8,7 @@ import StudioTheme 1.0 as StudioTheme
+ T.CheckBox {
+     id: control
+ 
+-    property StudioTheme.ControlStyle style: StudioTheme.Values.controlStyle
++    property var style: StudioTheme.Values.controlStyle
+ 
+     property alias actionIndicator: actionIndicator
+ 
+diff --git a/share/qtcreator/qmldesigner/propertyEditorQmlSources/imports/StudioControls/CheckIndicator.qml b/share/qtcreator/qmldesigner/propertyEditorQmlSources/imports/StudioControls/CheckIndicator.qml
+index 7cba51ce335..907fa955cb7 100644
+--- a/share/qtcreator/qmldesigner/propertyEditorQmlSources/imports/StudioControls/CheckIndicator.qml
++++ b/share/qtcreator/qmldesigner/propertyEditorQmlSources/imports/StudioControls/CheckIndicator.qml
+@@ -8,7 +8,7 @@ import StudioTheme 1.0 as StudioTheme
+ Rectangle {
+     id: control
+ 
+-    property StudioTheme.ControlStyle style: StudioTheme.Values.controlStyle
++    property var style: StudioTheme.Values.controlStyle
+ 
+     property T.Control __parentControl
+     property T.Popup __parentPopup
+diff --git a/share/qtcreator/qmldesigner/propertyEditorQmlSources/imports/StudioControls/ColorEditor.qml b/share/qtcreator/qmldesigner/propertyEditorQmlSources/imports/StudioControls/ColorEditor.qml
+index 4100ecf934c..4ffcfd31578 100644
+--- a/share/qtcreator/qmldesigner/propertyEditorQmlSources/imports/StudioControls/ColorEditor.qml
++++ b/share/qtcreator/qmldesigner/propertyEditorQmlSources/imports/StudioControls/ColorEditor.qml
+@@ -9,7 +9,7 @@ import StudioHelpers
+ Item {
+     id: root
+ 
+-    property StudioTheme.ControlStyle style: StudioTheme.Values.controlStyle
++    property var style: StudioTheme.Values.controlStyle
+ 
+     property alias color: colorBackend.color
+ 
+diff --git a/share/qtcreator/qmldesigner/propertyEditorQmlSources/imports/StudioControls/ComboBox.qml b/share/qtcreator/qmldesigner/propertyEditorQmlSources/imports/StudioControls/ComboBox.qml
+index cbd82028cfd..2dc082b1a8e 100644
+--- a/share/qtcreator/qmldesigner/propertyEditorQmlSources/imports/StudioControls/ComboBox.qml
++++ b/share/qtcreator/qmldesigner/propertyEditorQmlSources/imports/StudioControls/ComboBox.qml
+@@ -9,7 +9,7 @@ import StudioTheme 1.0 as StudioTheme
+ T.ComboBox {
+     id: control
+ 
+-    property StudioTheme.ControlStyle style: StudioTheme.Values.controlStyle
++    property var style: StudioTheme.Values.controlStyle
+ 
+     property alias actionIndicator: actionIndicator
+     property alias labelColor: comboBoxInput.color
+diff --git a/share/qtcreator/qmldesigner/propertyEditorQmlSources/imports/StudioControls/ComboBoxInput.qml b/share/qtcreator/qmldesigner/propertyEditorQmlSources/imports/StudioControls/ComboBoxInput.qml
+index 12dd3b1fbc2..16d397dd4d0 100644
+--- a/share/qtcreator/qmldesigner/propertyEditorQmlSources/imports/StudioControls/ComboBoxInput.qml
++++ b/share/qtcreator/qmldesigner/propertyEditorQmlSources/imports/StudioControls/ComboBoxInput.qml
+@@ -8,7 +8,7 @@ import StudioTheme 1.0 as StudioTheme
+ TextInput {
+     id: control
+ 
+-    property StudioTheme.ControlStyle style: StudioTheme.Values.controlStyle
++    property var style: StudioTheme.Values.controlStyle
+ 
+     property T.ComboBox __parentControl
+ 
+diff --git a/share/qtcreator/qmldesigner/propertyEditorQmlSources/imports/StudioControls/Dialog.qml b/share/qtcreator/qmldesigner/propertyEditorQmlSources/imports/StudioControls/Dialog.qml
+index 64e6ebfd4d8..861f736d99d 100644
+--- a/share/qtcreator/qmldesigner/propertyEditorQmlSources/imports/StudioControls/Dialog.qml
++++ b/share/qtcreator/qmldesigner/propertyEditorQmlSources/imports/StudioControls/Dialog.qml
+@@ -8,7 +8,7 @@ import StudioTheme 1.0 as StudioTheme
+ T.Dialog {
+     id: control
+ 
+-    property StudioTheme.ControlStyle style: StudioTheme.Values.controlStyle
++    property var style: StudioTheme.Values.controlStyle
+ 
+     implicitWidth: Math.max(implicitBackgroundWidth + leftInset + rightInset,
+                             contentWidth + leftPadding + rightPadding,
+diff --git a/share/qtcreator/qmldesigner/propertyEditorQmlSources/imports/StudioControls/DialogButton.qml b/share/qtcreator/qmldesigner/propertyEditorQmlSources/imports/StudioControls/DialogButton.qml
+index cce96797726..179a40a7fa5 100644
+--- a/share/qtcreator/qmldesigner/propertyEditorQmlSources/imports/StudioControls/DialogButton.qml
++++ b/share/qtcreator/qmldesigner/propertyEditorQmlSources/imports/StudioControls/DialogButton.qml
+@@ -8,7 +8,7 @@ import StudioTheme 1.0 as StudioTheme
+ T.Button {
+     id: control
+ 
+-    property StudioTheme.ControlStyle style: StudioTheme.Values.controlStyle
++    property var style: StudioTheme.Values.controlStyle
+ 
+     implicitWidth: Math.max(buttonBackground ? buttonBackground.implicitWidth : 0,
+                             textItem.implicitWidth + leftPadding + rightPadding)
+diff --git a/share/qtcreator/qmldesigner/propertyEditorQmlSources/imports/StudioControls/DialogButtonBox.qml b/share/qtcreator/qmldesigner/propertyEditorQmlSources/imports/StudioControls/DialogButtonBox.qml
+index 199c8fbe6c3..a3231aaf98a 100644
+--- a/share/qtcreator/qmldesigner/propertyEditorQmlSources/imports/StudioControls/DialogButtonBox.qml
++++ b/share/qtcreator/qmldesigner/propertyEditorQmlSources/imports/StudioControls/DialogButtonBox.qml
+@@ -8,7 +8,7 @@ import StudioTheme 1.0 as StudioTheme
+ T.DialogButtonBox {
+     id: control
+ 
+-    property StudioTheme.ControlStyle style: StudioTheme.Values.controlStyle
++    property var style: StudioTheme.Values.controlStyle
+ 
+     implicitWidth: Math.max(implicitBackgroundWidth + leftInset + rightInset,
+                             (control.count === 1 ? implicitContentWidth * 2 : implicitContentWidth) + leftPadding + rightPadding)
+diff --git a/share/qtcreator/qmldesigner/propertyEditorQmlSources/imports/StudioControls/FilterComboBox.qml b/share/qtcreator/qmldesigner/propertyEditorQmlSources/imports/StudioControls/FilterComboBox.qml
+index f17ef05a8f6..d12431ca8f7 100644
+--- a/share/qtcreator/qmldesigner/propertyEditorQmlSources/imports/StudioControls/FilterComboBox.qml
++++ b/share/qtcreator/qmldesigner/propertyEditorQmlSources/imports/StudioControls/FilterComboBox.qml
+@@ -8,7 +8,7 @@ import StudioTheme 1.0 as StudioTheme
+ Item {
+     id: control
+ 
+-    property StudioTheme.ControlStyle style: StudioTheme.Values.controlStyle
++    property var style: StudioTheme.Values.controlStyle
+ 
+     enum Interaction { None, TextEdit, Key }
+ 
+diff --git a/share/qtcreator/qmldesigner/propertyEditorQmlSources/imports/StudioControls/IconTextButton.qml b/share/qtcreator/qmldesigner/propertyEditorQmlSources/imports/StudioControls/IconTextButton.qml
+index 27bcb6fe048..37fb7142548 100644
+--- a/share/qtcreator/qmldesigner/propertyEditorQmlSources/imports/StudioControls/IconTextButton.qml
++++ b/share/qtcreator/qmldesigner/propertyEditorQmlSources/imports/StudioControls/IconTextButton.qml
+@@ -10,7 +10,7 @@ import StudioTheme as StudioTheme
+ T.AbstractButton {
+     id: control
+ 
+-    property StudioTheme.ControlStyle style: StudioTheme.Values.viewBarButtonStyle
++    property var style: StudioTheme.Values.viewBarButtonStyle
+ 
+     property alias tooltip: toolTipArea.tooltip
+     property alias buttonIcon: buttonIcon.text
+diff --git a/share/qtcreator/qmldesigner/propertyEditorQmlSources/imports/StudioControls/Indicator.qml b/share/qtcreator/qmldesigner/propertyEditorQmlSources/imports/StudioControls/Indicator.qml
+index 3ffab90ac9e..19407384ef8 100644
+--- a/share/qtcreator/qmldesigner/propertyEditorQmlSources/imports/StudioControls/Indicator.qml
++++ b/share/qtcreator/qmldesigner/propertyEditorQmlSources/imports/StudioControls/Indicator.qml
+@@ -8,7 +8,7 @@ import StudioTheme 1.0 as StudioTheme
+ Item {
+     id: control
+ 
+-    property StudioTheme.ControlStyle style: StudioTheme.Values.controlStyle
++    property var style: StudioTheme.Values.controlStyle
+ 
+     property alias icon: icon
+     property bool hover: mouseArea.containsMouse
+diff --git a/share/qtcreator/qmldesigner/propertyEditorQmlSources/imports/StudioControls/InfinityLoopIndicator.qml b/share/qtcreator/qmldesigner/propertyEditorQmlSources/imports/StudioControls/InfinityLoopIndicator.qml
+index d6346788f86..6c5d56be957 100644
+--- a/share/qtcreator/qmldesigner/propertyEditorQmlSources/imports/StudioControls/InfinityLoopIndicator.qml
++++ b/share/qtcreator/qmldesigner/propertyEditorQmlSources/imports/StudioControls/InfinityLoopIndicator.qml
+@@ -8,7 +8,7 @@ import StudioTheme 1.0 as StudioTheme
+ Rectangle {
+     id: control
+ 
+-    property StudioTheme.ControlStyle style: StudioTheme.Values.controlStyle
++    property var style: StudioTheme.Values.controlStyle
+ 
+     property Item __parentControl
+ 
+diff --git a/share/qtcreator/qmldesigner/propertyEditorQmlSources/imports/StudioControls/LinkIndicator2D.qml b/share/qtcreator/qmldesigner/propertyEditorQmlSources/imports/StudioControls/LinkIndicator2D.qml
+index b0e6e52bd65..2042bfe40cc 100644
+--- a/share/qtcreator/qmldesigner/propertyEditorQmlSources/imports/StudioControls/LinkIndicator2D.qml
++++ b/share/qtcreator/qmldesigner/propertyEditorQmlSources/imports/StudioControls/LinkIndicator2D.qml
+@@ -8,7 +8,7 @@ import StudioTheme 1.0 as StudioTheme
+ Rectangle {
+     id: control
+ 
+-    property StudioTheme.ControlStyle style: StudioTheme.Values.controlStyle
++    property var style: StudioTheme.Values.controlStyle
+ 
+     property Item __parentControl
+ 
+diff --git a/share/qtcreator/qmldesigner/propertyEditorQmlSources/imports/StudioControls/LinkIndicator3D.qml b/share/qtcreator/qmldesigner/propertyEditorQmlSources/imports/StudioControls/LinkIndicator3D.qml
+index 8a483a04c3c..1abcce6923a 100644
+--- a/share/qtcreator/qmldesigner/propertyEditorQmlSources/imports/StudioControls/LinkIndicator3D.qml
++++ b/share/qtcreator/qmldesigner/propertyEditorQmlSources/imports/StudioControls/LinkIndicator3D.qml
+@@ -9,7 +9,7 @@ import StudioTheme 1.0 as StudioTheme
+ Rectangle {
+     id: control
+ 
+-    property StudioTheme.ControlStyle style: StudioTheme.Values.controlStyle
++    property var style: StudioTheme.Values.controlStyle
+ 
+     property Item __parentControl
+ 
+diff --git a/share/qtcreator/qmldesigner/propertyEditorQmlSources/imports/StudioControls/LinkIndicator3DComponent.qml b/share/qtcreator/qmldesigner/propertyEditorQmlSources/imports/StudioControls/LinkIndicator3DComponent.qml
+index c6f3df59e19..5014093bf3e 100644
+--- a/share/qtcreator/qmldesigner/propertyEditorQmlSources/imports/StudioControls/LinkIndicator3DComponent.qml
++++ b/share/qtcreator/qmldesigner/propertyEditorQmlSources/imports/StudioControls/LinkIndicator3DComponent.qml
+@@ -8,7 +8,7 @@ import StudioTheme 1.0 as StudioTheme
+ Rectangle {
+     id: control
+ 
+-    property StudioTheme.ControlStyle style: StudioTheme.Values.controlStyle
++    property var style: StudioTheme.Values.controlStyle
+ 
+     property var pointA: Qt.vector2d()
+     property var pointB: Qt.vector2d()
+diff --git a/share/qtcreator/qmldesigner/propertyEditorQmlSources/imports/StudioControls/Menu.qml b/share/qtcreator/qmldesigner/propertyEditorQmlSources/imports/StudioControls/Menu.qml
+index f5aef1ca17b..1022500a817 100644
+--- a/share/qtcreator/qmldesigner/propertyEditorQmlSources/imports/StudioControls/Menu.qml
++++ b/share/qtcreator/qmldesigner/propertyEditorQmlSources/imports/StudioControls/Menu.qml
+@@ -9,7 +9,7 @@ import StudioTheme 1.0 as StudioTheme
+ T.Menu {
+     id: control
+ 
+-    property StudioTheme.ControlStyle style: StudioTheme.Values.controlStyle
++    property var style: StudioTheme.Values.controlStyle
+ 
+     implicitWidth: Math.max(implicitBackgroundWidth + leftInset + rightInset,
+                             contentWidth + leftPadding + rightPadding)
+diff --git a/share/qtcreator/qmldesigner/propertyEditorQmlSources/imports/StudioControls/MenuItem.qml b/share/qtcreator/qmldesigner/propertyEditorQmlSources/imports/StudioControls/MenuItem.qml
+index 28372e41be1..d975961bad2 100644
+--- a/share/qtcreator/qmldesigner/propertyEditorQmlSources/imports/StudioControls/MenuItem.qml
++++ b/share/qtcreator/qmldesigner/propertyEditorQmlSources/imports/StudioControls/MenuItem.qml
+@@ -11,7 +11,7 @@ T.MenuItem {
+ 
+     property alias shortcut: shortcutObserver.shortcutWorkaround
+ 
+-    property StudioTheme.ControlStyle style: StudioTheme.Values.controlStyle
++    property var style: StudioTheme.Values.controlStyle
+ 
+     property int labelSpacing: control.style.contextMenuLabelSpacing
+ 
+diff --git a/share/qtcreator/qmldesigner/propertyEditorQmlSources/imports/StudioControls/MenuItemWithIcon.qml b/share/qtcreator/qmldesigner/propertyEditorQmlSources/imports/StudioControls/MenuItemWithIcon.qml
+index e6bd35e8c41..62ad5f14ef9 100644
+--- a/share/qtcreator/qmldesigner/propertyEditorQmlSources/imports/StudioControls/MenuItemWithIcon.qml
++++ b/share/qtcreator/qmldesigner/propertyEditorQmlSources/imports/StudioControls/MenuItemWithIcon.qml
+@@ -9,7 +9,7 @@ import StudioTheme 1.0 as StudioTheme
+ T.MenuItem {
+     id: control
+ 
+-    property StudioTheme.ControlStyle style: StudioTheme.Values.controlStyle
++    property var style: StudioTheme.Values.controlStyle
+ 
+     property int labelSpacing: control.style.contextMenuLabelSpacing
+ 
+diff --git a/share/qtcreator/qmldesigner/propertyEditorQmlSources/imports/StudioControls/MenuSeparator.qml b/share/qtcreator/qmldesigner/propertyEditorQmlSources/imports/StudioControls/MenuSeparator.qml
+index b1c662a65c0..ce14731baef 100644
+--- a/share/qtcreator/qmldesigner/propertyEditorQmlSources/imports/StudioControls/MenuSeparator.qml
++++ b/share/qtcreator/qmldesigner/propertyEditorQmlSources/imports/StudioControls/MenuSeparator.qml
+@@ -8,7 +8,7 @@ import StudioTheme 1.0 as StudioTheme
+ T.MenuSeparator {
+     id: control
+ 
+-    property StudioTheme.ControlStyle style: StudioTheme.Values.controlStyle
++    property var style: StudioTheme.Values.controlStyle
+ 
+     implicitWidth: Math.max(implicitBackgroundWidth + leftInset + rightInset,
+                             implicitContentWidth + leftPadding + rightPadding)
+diff --git a/share/qtcreator/qmldesigner/propertyEditorQmlSources/imports/StudioControls/PopupDialog.qml b/share/qtcreator/qmldesigner/propertyEditorQmlSources/imports/StudioControls/PopupDialog.qml
+index 534e7270dfb..4074d00fa1d 100644
+--- a/share/qtcreator/qmldesigner/propertyEditorQmlSources/imports/StudioControls/PopupDialog.qml
++++ b/share/qtcreator/qmldesigner/propertyEditorQmlSources/imports/StudioControls/PopupDialog.qml
+@@ -11,7 +11,7 @@ import StudioWindowManager
+ QtObject {
+     id: root
+ 
+-    property StudioTheme.ControlStyle style: StudioTheme.Values.controlStyle
++    property var style: StudioTheme.Values.controlStyle
+ 
+     property alias titleBar: titleBarContent.children
+     default property alias content: mainContent.children
+diff --git a/share/qtcreator/qmldesigner/propertyEditorQmlSources/imports/StudioControls/ProgressBar.qml b/share/qtcreator/qmldesigner/propertyEditorQmlSources/imports/StudioControls/ProgressBar.qml
+index 6e98d60fc97..f1324182d64 100644
+--- a/share/qtcreator/qmldesigner/propertyEditorQmlSources/imports/StudioControls/ProgressBar.qml
++++ b/share/qtcreator/qmldesigner/propertyEditorQmlSources/imports/StudioControls/ProgressBar.qml
+@@ -8,7 +8,7 @@ import StudioTheme 1.0 as StudioTheme
+ T.ProgressBar {
+     id: control
+ 
+-    property StudioTheme.ControlStyle style: StudioTheme.Values.controlStyle
++    property var style: StudioTheme.Values.controlStyle
+ 
+     implicitWidth: Math.max(implicitBackgroundWidth + leftInset + rightInset,
+                             implicitContentWidth + leftPadding + rightPadding)
+diff --git a/share/qtcreator/qmldesigner/propertyEditorQmlSources/imports/StudioControls/RadioButton.qml b/share/qtcreator/qmldesigner/propertyEditorQmlSources/imports/StudioControls/RadioButton.qml
+index d1744ab5dad..5f3baef68a2 100644
+--- a/share/qtcreator/qmldesigner/propertyEditorQmlSources/imports/StudioControls/RadioButton.qml
++++ b/share/qtcreator/qmldesigner/propertyEditorQmlSources/imports/StudioControls/RadioButton.qml
+@@ -8,7 +8,7 @@ import StudioTheme 1.0 as StudioTheme
+ T.RadioButton {
+     id: control
+ 
+-    property StudioTheme.ControlStyle style: StudioTheme.Values.controlStyle
++    property var style: StudioTheme.Values.controlStyle
+ 
+     property alias actionIndicator: actionIndicator
+ 
+diff --git a/share/qtcreator/qmldesigner/propertyEditorQmlSources/imports/StudioControls/RealSliderPopup.qml b/share/qtcreator/qmldesigner/propertyEditorQmlSources/imports/StudioControls/RealSliderPopup.qml
+index 38ea960b88e..a0740c8c40b 100644
+--- a/share/qtcreator/qmldesigner/propertyEditorQmlSources/imports/StudioControls/RealSliderPopup.qml
++++ b/share/qtcreator/qmldesigner/propertyEditorQmlSources/imports/StudioControls/RealSliderPopup.qml
+@@ -8,7 +8,7 @@ import StudioTheme 1.0 as StudioTheme
+ T.Popup {
+     id: control
+ 
+-    property StudioTheme.ControlStyle style: StudioTheme.Values.controlStyle
++    property var style: StudioTheme.Values.controlStyle
+ 
+     property T.Control __parentControl
+ 
+diff --git a/share/qtcreator/qmldesigner/propertyEditorQmlSources/imports/StudioControls/RealSpinBox.qml b/share/qtcreator/qmldesigner/propertyEditorQmlSources/imports/StudioControls/RealSpinBox.qml
+index 767ccb4b953..056b2758b2d 100644
+--- a/share/qtcreator/qmldesigner/propertyEditorQmlSources/imports/StudioControls/RealSpinBox.qml
++++ b/share/qtcreator/qmldesigner/propertyEditorQmlSources/imports/StudioControls/RealSpinBox.qml
+@@ -9,7 +9,7 @@ import StudioQuickUtils
+ T.SpinBox {
+     id: control
+ 
+-    property StudioTheme.ControlStyle style: StudioTheme.Values.controlStyle
++    property var style: StudioTheme.Values.controlStyle
+ 
+     property real realFrom: 0.0
+     property real realTo: 99.0
+diff --git a/share/qtcreator/qmldesigner/propertyEditorQmlSources/imports/StudioControls/RealSpinBoxIndicator.qml b/share/qtcreator/qmldesigner/propertyEditorQmlSources/imports/StudioControls/RealSpinBoxIndicator.qml
+index 6bafb9c11e6..ddc4a51384c 100644
+--- a/share/qtcreator/qmldesigner/propertyEditorQmlSources/imports/StudioControls/RealSpinBoxIndicator.qml
++++ b/share/qtcreator/qmldesigner/propertyEditorQmlSources/imports/StudioControls/RealSpinBoxIndicator.qml
+@@ -8,7 +8,7 @@ import StudioTheme 1.0 as StudioTheme
+ Rectangle {
+     id: control
+ 
+-    property StudioTheme.ControlStyle style: StudioTheme.Values.controlStyle
++    property var style: StudioTheme.Values.controlStyle
+ 
+     property T.Control __parentControl
+ 
+diff --git a/share/qtcreator/qmldesigner/propertyEditorQmlSources/imports/StudioControls/RealSpinBoxInput.qml b/share/qtcreator/qmldesigner/propertyEditorQmlSources/imports/StudioControls/RealSpinBoxInput.qml
+index c9344c4d425..50f9c0915ad 100644
+--- a/share/qtcreator/qmldesigner/propertyEditorQmlSources/imports/StudioControls/RealSpinBoxInput.qml
++++ b/share/qtcreator/qmldesigner/propertyEditorQmlSources/imports/StudioControls/RealSpinBoxInput.qml
+@@ -8,7 +8,7 @@ import StudioTheme 1.0 as StudioTheme
+ TextInput {
+     id: control
+ 
+-    property StudioTheme.ControlStyle style: StudioTheme.Values.controlStyle
++    property var style: StudioTheme.Values.controlStyle
+ 
+     property T.Control __parentControl
+ 
+diff --git a/share/qtcreator/qmldesigner/propertyEditorQmlSources/imports/StudioControls/ScrollBar.qml b/share/qtcreator/qmldesigner/propertyEditorQmlSources/imports/StudioControls/ScrollBar.qml
+index 7c1126e90dd..00bb9354c61 100644
+--- a/share/qtcreator/qmldesigner/propertyEditorQmlSources/imports/StudioControls/ScrollBar.qml
++++ b/share/qtcreator/qmldesigner/propertyEditorQmlSources/imports/StudioControls/ScrollBar.qml
+@@ -8,7 +8,7 @@ import StudioTheme 1.0 as StudioTheme
+ T.ScrollBar {
+     id: control
+ 
+-    property StudioTheme.ControlStyle style: StudioTheme.Values.controlStyle
++    property var style: StudioTheme.Values.controlStyle
+ 
+     // This needs to be set, when using T.ScrollBar
+     implicitWidth: Math.max(implicitBackgroundWidth + leftInset + rightInset,
+diff --git a/share/qtcreator/qmldesigner/propertyEditorQmlSources/imports/StudioControls/ScrollView.qml b/share/qtcreator/qmldesigner/propertyEditorQmlSources/imports/StudioControls/ScrollView.qml
+index bf71dfbc280..8316e4f8b3d 100644
+--- a/share/qtcreator/qmldesigner/propertyEditorQmlSources/imports/StudioControls/ScrollView.qml
++++ b/share/qtcreator/qmldesigner/propertyEditorQmlSources/imports/StudioControls/ScrollView.qml
+@@ -8,7 +8,7 @@ import StudioTheme 1.0 as StudioTheme
+ T.ScrollView {
+     id: control
+ 
+-    property StudioTheme.ControlStyle style: StudioTheme.Values.controlStyle
++    property var style: StudioTheme.Values.controlStyle
+ 
+     property alias horizontalThickness: horizontalScrollBar.height
+     property alias verticalThickness: verticalScrollBar.width
+diff --git a/share/qtcreator/qmldesigner/propertyEditorQmlSources/imports/StudioControls/SearchBox.qml b/share/qtcreator/qmldesigner/propertyEditorQmlSources/imports/StudioControls/SearchBox.qml
+index efdfa49af75..5783b5f4a3d 100644
+--- a/share/qtcreator/qmldesigner/propertyEditorQmlSources/imports/StudioControls/SearchBox.qml
++++ b/share/qtcreator/qmldesigner/propertyEditorQmlSources/imports/StudioControls/SearchBox.qml
+@@ -8,7 +8,7 @@ import StudioTheme as StudioTheme
+ T.TextField {
+     id: control
+ 
+-    property StudioTheme.ControlStyle style: StudioTheme.Values.controlStyle
++    property var style: StudioTheme.Values.controlStyle
+ 
+     signal searchChanged(string searchText)
+ 
+diff --git a/share/qtcreator/qmldesigner/propertyEditorQmlSources/imports/StudioControls/Section.qml b/share/qtcreator/qmldesigner/propertyEditorQmlSources/imports/StudioControls/Section.qml
+index 18732305ce7..3a17d585e7b 100644
+--- a/share/qtcreator/qmldesigner/propertyEditorQmlSources/imports/StudioControls/Section.qml
++++ b/share/qtcreator/qmldesigner/propertyEditorQmlSources/imports/StudioControls/Section.qml
+@@ -8,7 +8,7 @@ import StudioTheme as StudioTheme
+ Item {
+     id: control
+ 
+-    property StudioTheme.ControlStyle style: StudioTheme.Values.controlStyle
++    property var style: StudioTheme.Values.controlStyle
+ 
+     property alias caption: label.text
+     property alias captionPixelSize: label.font.pixelSize
+diff --git a/share/qtcreator/qmldesigner/propertyEditorQmlSources/imports/StudioControls/SectionLayout.qml b/share/qtcreator/qmldesigner/propertyEditorQmlSources/imports/StudioControls/SectionLayout.qml
+index ddd4bf1ac9c..53e9c5c11c6 100644
+--- a/share/qtcreator/qmldesigner/propertyEditorQmlSources/imports/StudioControls/SectionLayout.qml
++++ b/share/qtcreator/qmldesigner/propertyEditorQmlSources/imports/StudioControls/SectionLayout.qml
+@@ -8,7 +8,7 @@ import StudioTheme 1.0 as StudioTheme
+ GridLayout {
+     id: control
+ 
+-    property StudioTheme.ControlStyle style: StudioTheme.Values.controlStyle
++    property var style: StudioTheme.Values.controlStyle
+ 
+     columns: 2
+     columnSpacing: control.style.sectionColumnSpacing
+diff --git a/share/qtcreator/qmldesigner/propertyEditorQmlSources/imports/StudioControls/Slider.qml b/share/qtcreator/qmldesigner/propertyEditorQmlSources/imports/StudioControls/Slider.qml
+index c3432a92731..2768d23a5a6 100644
+--- a/share/qtcreator/qmldesigner/propertyEditorQmlSources/imports/StudioControls/Slider.qml
++++ b/share/qtcreator/qmldesigner/propertyEditorQmlSources/imports/StudioControls/Slider.qml
+@@ -9,7 +9,7 @@ import StudioTheme 1.0 as StudioTheme
+ T.Slider {
+     id: control
+ 
+-    property StudioTheme.ControlStyle style: StudioTheme.Values.controlStyle
++    property var style: StudioTheme.Values.controlStyle
+ 
+     property int decimals: 0
+     property bool labels: true
+diff --git a/share/qtcreator/qmldesigner/propertyEditorQmlSources/imports/StudioControls/SliderPopup.qml b/share/qtcreator/qmldesigner/propertyEditorQmlSources/imports/StudioControls/SliderPopup.qml
+index aea63df4824..90b4c37405a 100644
+--- a/share/qtcreator/qmldesigner/propertyEditorQmlSources/imports/StudioControls/SliderPopup.qml
++++ b/share/qtcreator/qmldesigner/propertyEditorQmlSources/imports/StudioControls/SliderPopup.qml
+@@ -8,7 +8,7 @@ import StudioTheme 1.0 as StudioTheme
+ T.Popup {
+     id: control
+ 
+-    property StudioTheme.ControlStyle style: StudioTheme.Values.controlStyle
++    property var style: StudioTheme.Values.controlStyle
+ 
+     property T.Control __parentControl
+ 
+diff --git a/share/qtcreator/qmldesigner/propertyEditorQmlSources/imports/StudioControls/SpinBox.qml b/share/qtcreator/qmldesigner/propertyEditorQmlSources/imports/StudioControls/SpinBox.qml
+index e2628459d4e..09b599a7b55 100644
+--- a/share/qtcreator/qmldesigner/propertyEditorQmlSources/imports/StudioControls/SpinBox.qml
++++ b/share/qtcreator/qmldesigner/propertyEditorQmlSources/imports/StudioControls/SpinBox.qml
+@@ -9,7 +9,7 @@ import StudioQuickUtils
+ T.SpinBox {
+     id: control
+ 
+-    property StudioTheme.ControlStyle style: StudioTheme.Values.controlStyle
++    property var style: StudioTheme.Values.controlStyle
+ 
+     property alias labelColor: spinBoxInput.color
+     property alias actionIndicator: actionIndicator
+diff --git a/share/qtcreator/qmldesigner/propertyEditorQmlSources/imports/StudioControls/SpinBoxIndicator.qml b/share/qtcreator/qmldesigner/propertyEditorQmlSources/imports/StudioControls/SpinBoxIndicator.qml
+index a70cc1302a2..1c4c5fc0427 100644
+--- a/share/qtcreator/qmldesigner/propertyEditorQmlSources/imports/StudioControls/SpinBoxIndicator.qml
++++ b/share/qtcreator/qmldesigner/propertyEditorQmlSources/imports/StudioControls/SpinBoxIndicator.qml
+@@ -8,7 +8,7 @@ import StudioTheme 1.0 as StudioTheme
+ Rectangle {
+     id: control
+ 
+-    property StudioTheme.ControlStyle style: StudioTheme.Values.controlStyle
++    property var style: StudioTheme.Values.controlStyle
+ 
+     property T.Control __parentControl
+ 
+diff --git a/share/qtcreator/qmldesigner/propertyEditorQmlSources/imports/StudioControls/SpinBoxInput.qml b/share/qtcreator/qmldesigner/propertyEditorQmlSources/imports/StudioControls/SpinBoxInput.qml
+index 8db95789915..7ce4737a1a8 100644
+--- a/share/qtcreator/qmldesigner/propertyEditorQmlSources/imports/StudioControls/SpinBoxInput.qml
++++ b/share/qtcreator/qmldesigner/propertyEditorQmlSources/imports/StudioControls/SpinBoxInput.qml
+@@ -8,7 +8,7 @@ import StudioTheme 1.0 as StudioTheme
+ TextInput {
+     id: control
+ 
+-    property StudioTheme.ControlStyle style: StudioTheme.Values.controlStyle
++    property var style: StudioTheme.Values.controlStyle
+ 
+     property T.Control __parentControl
+ 
+diff --git a/share/qtcreator/qmldesigner/propertyEditorQmlSources/imports/StudioControls/SplitView.qml b/share/qtcreator/qmldesigner/propertyEditorQmlSources/imports/StudioControls/SplitView.qml
+index 4c7fb5af0d5..41a985ec714 100644
+--- a/share/qtcreator/qmldesigner/propertyEditorQmlSources/imports/StudioControls/SplitView.qml
++++ b/share/qtcreator/qmldesigner/propertyEditorQmlSources/imports/StudioControls/SplitView.qml
+@@ -8,7 +8,7 @@ import StudioTheme 1.0 as StudioTheme
+ QuickControls.SplitView {
+     id: control
+ 
+-    property StudioTheme.ControlStyle style: StudioTheme.Values.controlStyle
++    property var style: StudioTheme.Values.controlStyle
+ 
+     handle: Rectangle {
+         implicitWidth: control.orientation === Qt.Horizontal ? StudioTheme.Values.splitterThickness : control.width
+diff --git a/share/qtcreator/qmldesigner/propertyEditorQmlSources/imports/StudioControls/Switch.qml b/share/qtcreator/qmldesigner/propertyEditorQmlSources/imports/StudioControls/Switch.qml
+index 796ab76412d..238867fe7ef 100644
+--- a/share/qtcreator/qmldesigner/propertyEditorQmlSources/imports/StudioControls/Switch.qml
++++ b/share/qtcreator/qmldesigner/propertyEditorQmlSources/imports/StudioControls/Switch.qml
+@@ -8,7 +8,7 @@ import StudioTheme 1.0 as StudioTheme
+ T.Switch {
+     id: control
+ 
+-    property StudioTheme.ControlStyle style: StudioTheme.Values.controlStyle
++    property var style: StudioTheme.Values.controlStyle
+ 
+     property alias actionIndicator: actionIndicator
+ 
+diff --git a/share/qtcreator/qmldesigner/propertyEditorQmlSources/imports/StudioControls/TabBar.qml b/share/qtcreator/qmldesigner/propertyEditorQmlSources/imports/StudioControls/TabBar.qml
+index 8404f9190a6..f5ff4e34cb1 100644
+--- a/share/qtcreator/qmldesigner/propertyEditorQmlSources/imports/StudioControls/TabBar.qml
++++ b/share/qtcreator/qmldesigner/propertyEditorQmlSources/imports/StudioControls/TabBar.qml
+@@ -8,7 +8,7 @@ import StudioTheme 1.0 as StudioTheme
+ T.TabBar {
+     id: control
+ 
+-    property StudioTheme.ControlStyle style: StudioTheme.Values.controlStyle
++    property var style: StudioTheme.Values.controlStyle
+ 
+     implicitWidth: Math.max(implicitBackgroundWidth + leftInset + rightInset,
+                             implicitContentWidth + leftPadding + rightPadding)
+diff --git a/share/qtcreator/qmldesigner/propertyEditorQmlSources/imports/StudioControls/TabButton.qml b/share/qtcreator/qmldesigner/propertyEditorQmlSources/imports/StudioControls/TabButton.qml
+index 4074d546340..3e6b19fbc7f 100644
+--- a/share/qtcreator/qmldesigner/propertyEditorQmlSources/imports/StudioControls/TabButton.qml
++++ b/share/qtcreator/qmldesigner/propertyEditorQmlSources/imports/StudioControls/TabButton.qml
+@@ -8,7 +8,7 @@ import StudioTheme 1.0 as StudioTheme
+ T.TabButton {
+     id: control
+ 
+-    property StudioTheme.ControlStyle style: StudioTheme.Values.controlStyle
++    property var style: StudioTheme.Values.controlStyle
+ 
+     implicitWidth: Math.max(implicitBackgroundWidth + leftInset + rightInset,
+                             implicitContentWidth + leftPadding + rightPadding)
+diff --git a/share/qtcreator/qmldesigner/propertyEditorQmlSources/imports/StudioControls/TextArea.qml b/share/qtcreator/qmldesigner/propertyEditorQmlSources/imports/StudioControls/TextArea.qml
+index abd5f732848..e8744cd1f68 100644
+--- a/share/qtcreator/qmldesigner/propertyEditorQmlSources/imports/StudioControls/TextArea.qml
++++ b/share/qtcreator/qmldesigner/propertyEditorQmlSources/imports/StudioControls/TextArea.qml
+@@ -8,7 +8,7 @@ import StudioTheme 1.0 as StudioTheme
+ TextField {
+     id: control
+ 
+-    property StudioTheme.ControlStyle style: StudioTheme.Values.controlStyle
++    property var style: StudioTheme.Values.controlStyle
+ 
+     property real relativePopupX: 0 // TODO Maybe call it leftPadding
+     property real popupWidth: control.width
+diff --git a/share/qtcreator/qmldesigner/propertyEditorQmlSources/imports/StudioControls/TextField.qml b/share/qtcreator/qmldesigner/propertyEditorQmlSources/imports/StudioControls/TextField.qml
+index b383d996b6a..9347f67df9c 100644
+--- a/share/qtcreator/qmldesigner/propertyEditorQmlSources/imports/StudioControls/TextField.qml
++++ b/share/qtcreator/qmldesigner/propertyEditorQmlSources/imports/StudioControls/TextField.qml
+@@ -8,7 +8,7 @@ import StudioTheme 1.0 as StudioTheme
+ T.TextField {
+     id: control
+ 
+-    property StudioTheme.ControlStyle style: StudioTheme.Values.controlStyle
++    property var style: StudioTheme.Values.controlStyle
+ 
+     // This property is used to indicate the global hover state
+     property bool hover: (actionIndicator.hover || mouseArea.containsMouse || indicator.hover
+diff --git a/share/qtcreator/qmldesigner/propertyEditorQmlSources/imports/StudioControls/ToolTip.qml b/share/qtcreator/qmldesigner/propertyEditorQmlSources/imports/StudioControls/ToolTip.qml
+index b39fb6881ce..ec4565e0f0e 100644
+--- a/share/qtcreator/qmldesigner/propertyEditorQmlSources/imports/StudioControls/ToolTip.qml
++++ b/share/qtcreator/qmldesigner/propertyEditorQmlSources/imports/StudioControls/ToolTip.qml
+@@ -8,7 +8,7 @@ import StudioTheme 1.0 as StudioTheme
+ T.ToolTip {
+     id: control
+ 
+-    property StudioTheme.ControlStyle style: StudioTheme.Values.controlStyle
++    property var style: StudioTheme.Values.controlStyle
+ 
+     x: parent ? (parent.width - control.implicitWidth) / 2 : 0
+     y: -control.implicitHeight - 3
+diff --git a/share/qtcreator/qmldesigner/propertyEditorQmlSources/imports/StudioControls/TopLevelComboBox.qml b/share/qtcreator/qmldesigner/propertyEditorQmlSources/imports/StudioControls/TopLevelComboBox.qml
+index 7b03ac97724..5d7b146f79c 100644
+--- a/share/qtcreator/qmldesigner/propertyEditorQmlSources/imports/StudioControls/TopLevelComboBox.qml
++++ b/share/qtcreator/qmldesigner/propertyEditorQmlSources/imports/StudioControls/TopLevelComboBox.qml
+@@ -9,7 +9,7 @@ import StudioWindowManager
+ T.ComboBox {
+     id: control
+ 
+-    property StudioTheme.ControlStyle style: StudioTheme.Values.controlStyle
++    property var style: StudioTheme.Values.controlStyle
+ 
+     property bool hover: (comboBoxInput.hover || window.visible || popupIndicator.hover)
+                          && control.enabled
+diff --git a/share/qtcreator/qmldesigner/propertyEditorQmlSources/imports/StudioControls/TransientScrollBar.qml b/share/qtcreator/qmldesigner/propertyEditorQmlSources/imports/StudioControls/TransientScrollBar.qml
+index 141a981f749..1d7d3f10c4b 100644
+--- a/share/qtcreator/qmldesigner/propertyEditorQmlSources/imports/StudioControls/TransientScrollBar.qml
++++ b/share/qtcreator/qmldesigner/propertyEditorQmlSources/imports/StudioControls/TransientScrollBar.qml
+@@ -8,7 +8,7 @@ import StudioTheme 1.0 as StudioTheme
+ T.ScrollBar {
+     id: control
+ 
+-    property StudioTheme.ControlStyle style: StudioTheme.Values.controlStyle
++    property var style: StudioTheme.Values.controlStyle
+ 
+     property bool show: false
+     property bool otherInUse: false
+diff --git a/share/qtcreator/qmldesigner/propertyEditorQmlSources/imports/StudioControls/TranslationIndicator.qml b/share/qtcreator/qmldesigner/propertyEditorQmlSources/imports/StudioControls/TranslationIndicator.qml
+index 8b3962ffcd9..09356a72a6a 100644
+--- a/share/qtcreator/qmldesigner/propertyEditorQmlSources/imports/StudioControls/TranslationIndicator.qml
++++ b/share/qtcreator/qmldesigner/propertyEditorQmlSources/imports/StudioControls/TranslationIndicator.qml
+@@ -8,7 +8,7 @@ import StudioTheme 1.0 as StudioTheme
+ Item {
+     id: control
+ 
+-    property StudioTheme.ControlStyle style: StudioTheme.Values.controlStyle
++    property var style: StudioTheme.Values.controlStyle
+ 
+     property Item __parentControl
+ 
+diff --git a/share/qtcreator/qmldesigner/statusbar/NotificationButton.qml b/share/qtcreator/qmldesigner/statusbar/NotificationButton.qml
+index 3eaf29588dd..f1630418d18 100644
+--- a/share/qtcreator/qmldesigner/statusbar/NotificationButton.qml
++++ b/share/qtcreator/qmldesigner/statusbar/NotificationButton.qml
+@@ -10,7 +10,7 @@ import HelperWidgets
+ T.AbstractButton {
+     id: control
+ 
+-    property StudioTheme.ControlStyle style: StudioTheme.Values.controlStyle
++    property var style: StudioTheme.Values.controlStyle
+ 
+     property bool globalHover: false
+     property bool hover: control.hovered
+diff --git a/share/qtcreator/qmldesigner/statusbar/TabBarButton.qml b/share/qtcreator/qmldesigner/statusbar/TabBarButton.qml
+index 883babc78e9..5ced7aaf65d 100644
+--- a/share/qtcreator/qmldesigner/statusbar/TabBarButton.qml
++++ b/share/qtcreator/qmldesigner/statusbar/TabBarButton.qml
+@@ -8,7 +8,7 @@ import StudioTheme as StudioTheme
+ T.AbstractButton {
+     id: control
+ 
+-    property StudioTheme.ControlStyle style: StudioTheme.Values.controlStyle
++    property var style: StudioTheme.Values.controlStyle
+ 
+     property bool hover: control.hovered
+     property bool press: control.pressed
+diff --git a/share/qtcreator/qmldesigner/toolbar/MenuItemDelegate.qml b/share/qtcreator/qmldesigner/toolbar/MenuItemDelegate.qml
+index 1edc8711970..1a1530103db 100644
+--- a/share/qtcreator/qmldesigner/toolbar/MenuItemDelegate.qml
++++ b/share/qtcreator/qmldesigner/toolbar/MenuItemDelegate.qml
+@@ -9,7 +9,7 @@ import StudioTheme as StudioTheme
+ T.ItemDelegate {
+     id: root
+ 
+-    property StudioTheme.ControlStyle style: StudioTheme.Values.toolbarButtonStyle
++    property var style: StudioTheme.Values.toolbarButtonStyle
+ 
+     property alias myIcon: iconLabel.text
+     property alias myText: textLabel.text
+diff --git a/share/qtcreator/qmldesigner/toolbar/SplitButton.qml b/share/qtcreator/qmldesigner/toolbar/SplitButton.qml
+index dcd99678bf1..03b500a9333 100644
+--- a/share/qtcreator/qmldesigner/toolbar/SplitButton.qml
++++ b/share/qtcreator/qmldesigner/toolbar/SplitButton.qml
+@@ -13,7 +13,7 @@ import ToolBar
+ Item {
+     id: root
+ 
+-    property StudioTheme.ControlStyle style: StudioTheme.Values.toolbarButtonStyle
++    property var style: StudioTheme.Values.toolbarButtonStyle
+ 
+     property alias tooltip: toolTipArea.tooltip
+     property bool hover: primaryButton.hover || menuButton.hover
+@@ -136,7 +136,7 @@ Item {
+         T.AbstractButton {
+             id: primaryButton
+ 
+-            property StudioTheme.ControlStyle style: root.style
++            property var style: root.style
+ 
+             property bool hover: primaryButton.hovered
+             property bool press: primaryButton.pressed
+@@ -365,7 +365,7 @@ Item {
+         T.AbstractButton {
+             id: menuButton
+ 
+-            property StudioTheme.ControlStyle style: root.style
++            property var style: root.style
+ 
+             property bool hover: menuButton.hovered
+             property bool press: menuButton.pressed
+-- 
+2.48.1
+
