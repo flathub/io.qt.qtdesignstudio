@@ -51,21 +51,17 @@ modules:
     sources:
       - type: git
         url: https://code.qt.io/qt-creator/qt-creator
-        tag: qds/v4.7.0
-        commit: bfb74e5d04a08caf7051116e46193293975f0b33
+        tag: qds/v4.7.1
+        commit: 23143191029dc1a029744cff5c34447b947935be
         x-checker-data:
           type: git
           tag-pattern: ^qds\/v(\d+\.\d+\.?\d*)$
-      - type: patch
-        path: 0001-QmlDesigner-Add-module-statement-to-qmldir.patch
-      - type: patch
-        path: 0001-Workaround-broken-style-in-flatpak.patch
   - name: docs
     buildsystem: simple
     sources:
       - type: archive
-        url: https://download.qt.io/online/qtsdkrepository/linux_x64/desktop/tools_qtdesignstudio_generation2/qt.tools.qtdesignstudio/4.7.0-0-202502171042docs.7z
-        sha1: cb3e72a179836dc0bb123bac140fc753e9dc4e47
+        url: https://download.qt.io/online/qtsdkrepository/linux_x64/desktop/tools_qtdesignstudio_generation2/qt.tools.qtdesignstudio/4.7.1-0-202503281851docs.7z
+        sha256: d2b9e4ca3fc4eb1f8232bdf8619a0b4bf454b0f3418f6f5e5b44619a872a7fa7
         x-checker-data:
           type: html
           url: https://download.qt.io/online/qtsdkrepository/linux_x64/desktop/tools_qtdesignstudio_generation2/Updates.xml
