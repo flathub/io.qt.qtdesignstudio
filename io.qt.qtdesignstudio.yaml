@@ -51,8 +51,8 @@ modules:
     sources:
       - type: git
         url: https://code.qt.io/qt-creator/qt-creator
-        tag: qds/v4.7.1
-        commit: 23143191029dc1a029744cff5c34447b947935be
+        tag: qds/v4.7.2
+        commit: da8d2b3f0fd8cacaba23cfab92d0ae9da91dc71a
         x-checker-data:
           type: git
           tag-pattern: ^qds\/v(\d+\.\d+\.?\d*)$
@@ -60,8 +60,8 @@ modules:
     buildsystem: simple
     sources:
       - type: archive
-        url: https://download.qt.io/online/qtsdkrepository/linux_x64/desktop/tools_qtdesignstudio_generation2/qt.tools.qtdesignstudio/4.7.1-0-202503281851docs.7z
-        sha256: d2b9e4ca3fc4eb1f8232bdf8619a0b4bf454b0f3418f6f5e5b44619a872a7fa7
+        url: https://download.qt.io/online/qtsdkrepository/linux_x64/desktop/tools_qtdesignstudio_generation2/qt.tools.qtdesignstudio/4.7.2-0-202506061435docs.7z
+        sha256: 208f1b48471062182094eb48adf75453730ccf2e72d245011199c12173f836bd
         x-checker-data:
           type: html
           url: https://download.qt.io/online/qtsdkrepository/linux_x64/desktop/tools_qtdesignstudio_generation2/Updates.xml
