@@ -25,7 +25,7 @@ modules:
     sources:
       - type: git
         url: https://code.qt.io/qt-labs/qtquickdesigner-components
-        tag: dev
+        branch: dev
         commit: 8c9e0faa0dd8b8adf019e357212e59898a7bebfb
         x-checker-data:
           type: git
@@ -51,7 +51,7 @@ modules:
     sources:
       - type: git
         url: https://code.qt.io/qt-creator/qt-creator
-        tag: qds/dev
+        branch: qds/dev
         commit: e9164502504531a1b2ef1e46b2621eafecfa11b8
         x-checker-data:
           type: git
