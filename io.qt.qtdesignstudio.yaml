@@ -1,8 +1,8 @@
 app-id: io.qt.qtdesignstudio
 runtime: org.kde.Sdk
-runtime-version: '6.8'
+runtime-version: '6.9'
 base: io.qt.qtwebengine.BaseApp
-base-version: '6.8'
+base-version: '6.9'
 sdk: org.kde.Sdk
 command: qtdesignstudio
 rename-icon: QtProject-qtdesignstudio
@@ -47,12 +47,25 @@ modules:
       - -DWITH_ONLINE_DOCS=ON
       - -DBUILD_DEVELOPER_DOCS=ON
       - -DBUILD_DESIGNSTUDIO=ON
+      - -DFETCHCONTENT_SOURCE_DIR_EFSW=efsw
+      - -DFETCHCONTENT_SOURCE_DIR_QDS_QML_IMPORT_OVERRIDE=qml_override
+      - -DQDS_AUTO_INSTALL_QUICK_DESIGNER_COMPONENTS=OFF
       - -Wno-dev
     sources:
       - type: git
+        url: https://github.com/SpartanJ/efsw.git
+        tag: 1.5.0
+        commit: 112e89c00f362709b887b65199694ef061519ebb
+        dest: efsw
+      - type: git
+        url: https://git.qt.io/design-studio/qds-qml-import-override.git
+        tag: qds-4.8.0-beta4
+        commit: 87b7cf77d5cc754e7e921d78767f6c50aece7642
+        dest: qml_override
+      - type: git
         url: https://code.qt.io/qt-creator/qt-creator
-        tag: qds/v4.7.2
-        commit: da8d2b3f0fd8cacaba23cfab92d0ae9da91dc71a
+        tag: qds/v4.8.0
+        commit: 5aa08beaaa4f7b5dbdc79c4339c73a212061ebaa
         x-checker-data:
           type: git
           tag-pattern: ^qds\/v(\d+\.\d+\.?\d*)$
@@ -60,8 +73,8 @@ modules:
     buildsystem: simple
     sources:
       - type: archive
-        url: https://download.qt.io/online/qtsdkrepository/linux_x64/desktop/tools_qtdesignstudio_generation2/qt.tools.qtdesignstudio/4.7.2-0-202506061435docs.7z
-        sha256: 208f1b48471062182094eb48adf75453730ccf2e72d245011199c12173f836bd
+        url: https://download.qt.io/online/qtsdkrepository/linux_x64/desktop/tools_qtdesignstudio_generation2/qt.tools.qtdesignstudio/4.8.0-0-202510131057docs.7z
+        sha256: 7e11fb7c4823af2e3200fbfb284b79f34a0b4a8d09c75f914091301b15485aaf
         x-checker-data:
           type: html
           url: https://download.qt.io/online/qtsdkrepository/linux_x64/desktop/tools_qtdesignstudio_generation2/Updates.xml
