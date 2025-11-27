@@ -64,8 +64,8 @@ modules:
         dest: qml_override
       - type: git
         url: https://code.qt.io/qt-creator/qt-creator
-        tag: qds/v4.8.0
-        commit: 5aa08beaaa4f7b5dbdc79c4339c73a212061ebaa
+        tag: qds/v4.8.1
+        commit: 9129b18a0a136a02f3e0947ced036b77118890c6
         x-checker-data:
           type: git
           tag-pattern: ^qds\/v(\d+\.\d+\.?\d*)$
