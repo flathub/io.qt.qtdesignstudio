@@ -63,9 +63,9 @@ modules:
         commit: 87b7cf77d5cc754e7e921d78767f6c50aece7642
         dest: qml_override
       - type: git
-        url: https://code.qt.io/qt-creator/qt-creator
-        tag: qds/v4.8.0
-        commit: 5aa08beaaa4f7b5dbdc79c4339c73a212061ebaa
+        url: https://github.com/qt-creator/qt-creator.git
+        tag: qds/v4.8.1
+        commit: 9129b18a0a136a02f3e0947ced036b77118890c6
         x-checker-data:
           type: git
           tag-pattern: ^qds\/v(\d+\.\d+\.?\d*)$
@@ -73,8 +73,8 @@ modules:
     buildsystem: simple
     sources:
       - type: archive
-        url: https://download.qt.io/online/qtsdkrepository/linux_x64/desktop/tools_qtdesignstudio_generation2/qt.tools.qtdesignstudio/4.8.0-0-202510131057docs.7z
-        sha256: 7e11fb7c4823af2e3200fbfb284b79f34a0b4a8d09c75f914091301b15485aaf
+        url: https://download.qt.io/online/qtsdkrepository/linux_x64/desktop/tools_qtdesignstudio_generation2/qt.tools.qtdesignstudio/4.8.1-0-202511211723docs.7z
+        sha256: 9f6e3f475ab711e012d7ced42a3e0695a373b15b9fb8be9b32836a74ecf061ae
         x-checker-data:
           type: html
           url: https://download.qt.io/online/qtsdkrepository/linux_x64/desktop/tools_qtdesignstudio_generation2/Updates.xml
