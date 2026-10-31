@@ -85,4 +85,4 @@ modules:
           type: html
           url: https://download.qt.io/online/qtsdkrepository/linux_x64/desktop/tools_qtdesignstudio_generation2/Updates.xml
           version-pattern: <Version>([2-9].+)<\/Version>
-          url-template: https://download.qt.io/online/qtsdkrepository/linux_x64/desktop/tools_qtdesignstudio_generation2/qt.tools.qtdesignstudio/$versiondocs.7z
+          url-template: https://download.qt.io/online/qtsdkrepository/linux_x64/desktop/tools_qtdesignstudio_generation2/qt.tools.qtdesignstudio/${version}docs.7z
